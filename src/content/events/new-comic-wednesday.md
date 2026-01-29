@@ -4,6 +4,7 @@ date: 2026-01-29
 description: "Fresh comics arrive every Wednesday! Be the first to get the latest releases from Marvel, DC, Image, and more."
 featured: false
 recurring: "weekly"
+image: "/images/events/marvel-covers.jpg"
 ---
 
 # New Comic Wednesday

@@ -4,6 +4,7 @@ date: 2026-05-02
 description: "The biggest day in comics! Free comics, special deals, and surprises all day long."
 featured: true
 recurring: "yearly"
+image: "/images/events/fcbd.jpg"
 ---
 
 # Free Comic Book Day 2026
