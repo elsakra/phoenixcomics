@@ -3,6 +3,8 @@ interface Props {
   variant?: 'ember' | 'flame' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
+  target?: string;
+  rel?: string;
   class?: string;
   type?: 'button' | 'submit';
   disabled?: boolean;
@@ -12,9 +14,12 @@ const {
   variant = 'ember', 
   size = 'md',
   href,
+  target,
+  rel,
   class: className = '',
   type = 'button',
-  disabled = false
+  disabled = false,
+  ...rest
 } = Astro.props;
 
 const sizeClasses = {
@@ -32,14 +37,17 @@ const variantClasses = {
 const classes = `btn ${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim();
 
 const Tag = href ? 'a' : 'button';
+
+// If opening a new tab, default to safe rel unless explicitly provided
+const computedRel = target === '_blank' ? (rel ?? 'noopener noreferrer') : rel;
 ---
 
 {href ? (
-  <a href={href} class={classes}>
+  <a href={href} class={classes} target={target} rel={computedRel} {...rest}>
     <slot />
   </a>
 ) : (
-  <button type={type} class={classes} disabled={disabled}>
+  <button type={type} class={classes} disabled={disabled} {...rest}>
     <slot />
   </button>
 )}
