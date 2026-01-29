@@ -30,7 +30,7 @@ const classes = `${baseClasses[variant]} bubble-${direction} ${className}`.trim(
   .shout-bubble {
     position: relative;
     background: var(--color-paper);
-    color: var(--color-ash);
+    color: var(--color-ash) !important; /* Force dark text to override Tailwind body color */
     padding: 1rem 1.5rem;
     font-family: var(--font-comic);
     font-size: 1rem;
