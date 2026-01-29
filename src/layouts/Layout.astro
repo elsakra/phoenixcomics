@@ -294,6 +294,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         const loader = document.getElementById('loader');
         if (loader) {
           loader.style.opacity = '0';
+          loader.style.pointerEvents = 'none'; // Immediately allow clicks through
           setTimeout(() => {
             loader.style.display = 'none';
           }, 500);

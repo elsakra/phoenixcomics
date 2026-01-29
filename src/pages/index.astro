@@ -207,94 +207,121 @@ import Phoenix from '../components/effects/Phoenix.astro';
       <div class="comic-carousel overflow-x-auto pb-4 -mx-4 px-4">
         <div class="flex gap-6 min-w-max">
           <!-- Comic Card 1 -->
-          <div class="comic-card w-48 group cursor-pointer" data-animate>
+          <a href="https://www.previewsworld.com/NewReleases" target="_blank" rel="noopener" class="comic-card w-48 group block" data-animate>
             <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-2xl">
               <div class="absolute inset-0 bg-gradient-to-br from-[--color-ember] to-[--color-heat]"></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display text-6xl text-white/20">#1</span>
-              </div>
+              <!-- Comic cover SVG graphic -->
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 120 180" preserveAspectRatio="xMidYMid slice">
+                <rect x="10" y="10" width="100" height="25" fill="rgba(255,255,255,0.9)" rx="2"/>
+                <text x="60" y="28" text-anchor="middle" font-family="var(--font-display)" font-size="14" fill="#e63946">AMAZING</text>
+                <circle cx="60" cy="100" r="35" fill="rgba(0,0,0,0.3)"/>
+                <text x="60" y="108" text-anchor="middle" font-family="var(--font-display)" font-size="24" fill="rgba(255,255,255,0.8)">#1</text>
+                <rect x="15" y="150" width="90" height="20" fill="rgba(0,0,0,0.5)" rx="2"/>
+                <text x="60" y="164" text-anchor="middle" font-family="var(--font-comic)" font-size="10" fill="white">SPIDER-MAN</text>
+              </svg>
               <!-- Hover overlay -->
               <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
                 <div class="text-center">
                   <p class="font-display text-sm text-[--color-ember]">MARVEL</p>
                   <p class="font-comic text-white text-sm">Amazing Spider-Man</p>
+                  <p class="font-display text-xs text-[--color-smoke-light] mt-2">Click to view releases</p>
                 </div>
               </div>
             </div>
             <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Amazing Spider-Man</p>
-          </div>
+          </a>
           
           <!-- Comic Card 2 -->
-          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.1s;">
+          <a href="https://www.previewsworld.com/NewReleases" target="_blank" rel="noopener" class="comic-card w-48 group block" data-animate style="animation-delay: 0.1s;">
             <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:-rotate-2 group-hover:shadow-2xl">
               <div class="absolute inset-0 bg-gradient-to-br from-[--color-flame] to-[--color-ember]"></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display text-6xl text-white/20">#42</span>
-              </div>
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 120 180" preserveAspectRatio="xMidYMid slice">
+                <rect x="10" y="10" width="100" height="25" fill="rgba(0,0,0,0.8)" rx="2"/>
+                <text x="60" y="28" text-anchor="middle" font-family="var(--font-display)" font-size="16" fill="#f7c331">BATMAN</text>
+                <path d="M60 70 L40 100 L50 100 L45 130 L75 130 L70 100 L80 100 Z" fill="rgba(0,0,0,0.4)"/>
+                <text x="60" y="160" text-anchor="middle" font-family="var(--font-display)" font-size="20" fill="rgba(255,255,255,0.6)">#42</text>
+              </svg>
               <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
                 <div class="text-center">
                   <p class="font-display text-sm text-[--color-flame]">DC</p>
                   <p class="font-comic text-white text-sm">Batman</p>
+                  <p class="font-display text-xs text-[--color-smoke-light] mt-2">Click to view releases</p>
                 </div>
               </div>
             </div>
             <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Batman</p>
-          </div>
+          </a>
           
           <!-- Comic Card 3 -->
-          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.2s;">
+          <a href="https://www.previewsworld.com/NewReleases" target="_blank" rel="noopener" class="comic-card w-48 group block" data-animate style="animation-delay: 0.2s;">
             <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-2xl">
               <div class="absolute inset-0 bg-gradient-to-br from-[--color-heat] to-[--color-ash]"></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display text-6xl text-white/20">#7</span>
-              </div>
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 120 180" preserveAspectRatio="xMidYMid slice">
+                <rect x="10" y="10" width="100" height="25" fill="rgba(255,255,255,0.9)" rx="2"/>
+                <text x="60" y="28" text-anchor="middle" font-family="var(--font-display)" font-size="16" fill="#e63946">SPAWN</text>
+                <ellipse cx="60" cy="95" rx="30" ry="40" fill="rgba(0,0,0,0.3)"/>
+                <text x="60" y="100" text-anchor="middle" font-family="var(--font-display)" font-size="20" fill="rgba(255,255,255,0.7)">#7</text>
+                <rect x="20" y="145" width="80" height="3" fill="rgba(255,255,255,0.3)"/>
+                <rect x="25" y="152" width="70" height="3" fill="rgba(255,255,255,0.2)"/>
+              </svg>
               <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
                 <div class="text-center">
                   <p class="font-display text-sm text-[--color-heat]">IMAGE</p>
                   <p class="font-comic text-white text-sm">Spawn</p>
+                  <p class="font-display text-xs text-[--color-smoke-light] mt-2">Click to view releases</p>
                 </div>
               </div>
             </div>
             <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Spawn</p>
-          </div>
+          </a>
           
           <!-- Comic Card 4 -->
-          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.3s;">
+          <a href="https://www.previewsworld.com/NewReleases" target="_blank" rel="noopener" class="comic-card w-48 group block" data-animate style="animation-delay: 0.3s;">
             <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:-rotate-2 group-hover:shadow-2xl">
               <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-900"></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display text-6xl text-white/20">#1</span>
-              </div>
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 120 180" preserveAspectRatio="xMidYMid slice">
+                <rect x="10" y="10" width="100" height="25" fill="rgba(255,255,255,0.9)" rx="2"/>
+                <text x="60" y="28" text-anchor="middle" font-family="var(--font-display)" font-size="18" fill="#7c3aed">SAGA</text>
+                <circle cx="40" cy="90" r="20" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="80" cy="100" r="15" fill="rgba(255,255,255,0.15)"/>
+                <text x="60" y="150" text-anchor="middle" font-family="var(--font-display)" font-size="24" fill="rgba(255,255,255,0.5)">#1</text>
+              </svg>
               <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
                 <div class="text-center">
                   <p class="font-display text-sm text-purple-400">INDIE</p>
                   <p class="font-comic text-white text-sm">Saga</p>
+                  <p class="font-display text-xs text-[--color-smoke-light] mt-2">Click to view releases</p>
                 </div>
               </div>
             </div>
             <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Saga</p>
-          </div>
+          </a>
           
           <!-- Comic Card 5 -->
-          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.4s;">
+          <a href="https://www.previewsworld.com/NewReleases" target="_blank" rel="noopener" class="comic-card w-48 group block" data-animate style="animation-delay: 0.4s;">
             <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-2xl">
               <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-green-900"></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display text-6xl text-white/20">#15</span>
-              </div>
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 120 180" preserveAspectRatio="xMidYMid slice">
+                <rect x="10" y="10" width="100" height="30" fill="rgba(0,0,0,0.6)" rx="2"/>
+                <text x="60" y="32" text-anchor="middle" font-family="var(--font-display)" font-size="20" fill="#22c55e">HULK</text>
+                <ellipse cx="60" cy="100" rx="40" ry="35" fill="rgba(0,0,0,0.3)"/>
+                <text x="60" y="108" text-anchor="middle" font-family="var(--font-display)" font-size="18" fill="rgba(255,255,255,0.6)">#15</text>
+                <text x="60" y="160" text-anchor="middle" font-family="var(--font-comic)" font-size="10" fill="rgba(255,255,255,0.4)">SMASH!</text>
+              </svg>
               <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
                 <div class="text-center">
                   <p class="font-display text-sm text-green-400">MARVEL</p>
                   <p class="font-comic text-white text-sm">Hulk</p>
+                  <p class="font-display text-xs text-[--color-smoke-light] mt-2">Click to view releases</p>
                 </div>
               </div>
             </div>
             <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Hulk</p>
-          </div>
+          </a>
           
           <!-- More comics indicator -->
           <div class="w-48 flex items-center justify-center">
-            <a href="https://www.previewsworld.com/NewReleases" class="text-center group">
+            <a href="https://www.previewsworld.com/NewReleases" target="_blank" rel="noopener" class="text-center group">
               <div class="w-20 h-20 rounded-full border-2 border-dashed border-[--color-smoke] flex items-center justify-center group-hover:border-[--color-ember] transition-colors">
                 <svg class="w-8 h-8 text-[--color-smoke] group-hover:text-[--color-ember] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
