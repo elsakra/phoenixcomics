@@ -1,0 +1,289 @@
+---
+// Cursor effects component - fire trail, magnetic pull, etc.
+---
+
+<div id="cursor-effects" class="cursor-effects-container">
+  <!-- Custom cursor -->
+  <div id="custom-cursor" class="custom-cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+  
+  <!-- Fire particles container -->
+  <div id="fire-particles" class="fire-particles"></div>
+  
+  <!-- Click effect container -->
+  <div id="click-effect" class="click-effect">
+    <span class="click-text"></span>
+  </div>
+</div>
+
+<style>
+  .cursor-effects-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    overflow: hidden;
+  }
+  
+  /* Custom cursor */
+  .custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    display: none; /* Hidden by default, shown via JS */
+  }
+  
+  .cursor-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--color-ember);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  
+  .cursor-ring {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-ember);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    opacity: 0.5;
+  }
+  
+  .custom-cursor.hovering .cursor-ring {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: var(--color-flame);
+    opacity: 0.8;
+  }
+  
+  .custom-cursor.clicking .cursor-dot {
+    transform: translate(-50%, -50%) scale(2);
+    background: var(--color-flame);
+  }
+  
+  /* Fire particles */
+  .fire-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+  
+  .fire-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-fade 0.6s ease-out forwards;
+  }
+  
+  @keyframes particle-fade {
+    0% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0) translateY(-20px);
+    }
+  }
+  
+  /* Click effect text */
+  .click-effect {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+  }
+  
+  .click-effect.visible {
+    opacity: 1;
+    animation: click-pop 0.4s ease-out forwards;
+  }
+  
+  .click-text {
+    font-family: var(--font-comic);
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-flame);
+    text-shadow: 
+      2px 2px 0 var(--color-heat),
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+    text-transform: uppercase;
+  }
+  
+  @keyframes click-pop {
+    0% {
+      transform: scale(0.5) translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2) translateY(-10px);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1) translateY(-30px);
+      opacity: 0;
+    }
+  }
+  
+  /* Hide on touch devices */
+  @media (hover: none) {
+    .cursor-effects-container {
+      display: none;
+    }
+  }
+  
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .fire-particle,
+    .click-effect {
+      animation: none !important;
+    }
+    .cursor-effects-container {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  // Check if it's a touch device
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+  if (!prefersReducedMotion && !isTouchDevice) {
+    const cursor = document.getElementById('custom-cursor');
+    const fireParticles = document.getElementById('fire-particles');
+    const clickEffect = document.getElementById('click-effect');
+    const clickText = clickEffect?.querySelector('.click-text');
+    
+    // Show custom cursor
+    if (cursor) {
+      cursor.style.display = 'block';
+      document.body.style.cursor = 'none';
+    }
+    
+    // Track mouse position
+    let mouseX = 0;
+    let mouseY = 0;
+    let particleCount = 0;
+    const maxParticles = 20;
+    
+    // Click effect words
+    const clickWords = ['CLICK!', 'POW!', 'ZAP!', 'WHAM!', 'KAPOW!'];
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      // Update cursor position
+      if (cursor) {
+        cursor.style.left = `${mouseX}px`;
+        cursor.style.top = `${mouseY}px`;
+      }
+      
+      // Create fire particle (throttled)
+      if (fireParticles && particleCount < maxParticles && Math.random() > 0.7) {
+        createFireParticle(mouseX, mouseY);
+      }
+    });
+    
+    // Handle hover states
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.matches('a, button, [role="button"], .interactive')) {
+        cursor?.classList.add('hovering');
+      }
+    });
+    
+    document.addEventListener('mouseout', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.matches('a, button, [role="button"], .interactive')) {
+        cursor?.classList.remove('hovering');
+      }
+    });
+    
+    // Handle clicks
+    document.addEventListener('mousedown', () => {
+      cursor?.classList.add('clicking');
+      
+      // Show click effect
+      if (clickEffect && clickText) {
+        const word = clickWords[Math.floor(Math.random() * clickWords.length)];
+        clickText.textContent = word;
+        clickEffect.style.left = `${mouseX}px`;
+        clickEffect.style.top = `${mouseY}px`;
+        clickEffect.classList.remove('visible');
+        void clickEffect.offsetWidth; // Trigger reflow
+        clickEffect.classList.add('visible');
+        
+        setTimeout(() => {
+          clickEffect.classList.remove('visible');
+        }, 400);
+      }
+    });
+    
+    document.addEventListener('mouseup', () => {
+      cursor?.classList.remove('clicking');
+    });
+    
+    // Create fire particle
+    function createFireParticle(x: number, y: number) {
+      if (!fireParticles) return;
+      
+      particleCount++;
+      const particle = document.createElement('div');
+      particle.className = 'fire-particle';
+      
+      // Random color from fire palette
+      const colors = ['#ff6b35', '#f7c331', '#e63946', '#ff8c5a'];
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      
+      // Random offset
+      const offsetX = (Math.random() - 0.5) * 20;
+      const offsetY = (Math.random() - 0.5) * 20;
+      
+      particle.style.left = `${x + offsetX}px`;
+      particle.style.top = `${y + offsetY}px`;
+      particle.style.width = `${Math.random() * 6 + 2}px`;
+      particle.style.height = particle.style.width;
+      
+      fireParticles.appendChild(particle);
+      
+      // Remove particle after animation
+      setTimeout(() => {
+        particle.remove();
+        particleCount--;
+      }, 600);
+    }
+    
+    // Magnetic effect for buttons
+    const magneticElements = document.querySelectorAll('.btn, .magnetic');
+    
+    magneticElements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+        const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+        
+        (el as HTMLElement).style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        (el as HTMLElement).style.transform = '';
+      });
+    });
+  }
+</script>

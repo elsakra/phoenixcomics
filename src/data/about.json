@@ -1,0 +1,13 @@
+{
+  "ownerName": "Peter Gong",
+  "ownerBio": "My name is Peter Gong. I've been in comic book retail for thirty plus years. I've been an avid comic book collector for even more years. But I emphasize the point of reading rather than collecting, and like to refer to myself as \"comic-sama.\"\n\nMy personal tastes vary from the esoteric to the popular. I'm also a serious anime and manga fan, going back to the 70s classic stuff to some current series and movies. I also love all genre films in general.",
+  "storeDescription": "My store is friendly and laid back, offering a welcome mat to all who embrace all facets of fandom. Phoenix Comics & Collectibles of Long Island is a haven for the genre connoisseur!",
+  "tagline": "Your Long Island haven for comics, manga, sci-fi novels, and collectibles.",
+  "favorites": [
+    { "title": "Walking Dead" },
+    { "title": "Strangers in Paradise" },
+    { "title": "Usagi Yojimbo" },
+    { "title": "Ultimate Spiderman" },
+    { "title": "Fables" }
+  ]
+}

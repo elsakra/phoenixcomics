@@ -1,0 +1,20 @@
+{
+  "hours": [
+    { "day": "Monday", "open": "", "close": "", "closed": true },
+    { "day": "Tuesday", "open": "1 PM", "close": "6 PM", "closed": false },
+    { "day": "Wednesday", "open": "12:30 PM", "close": "7 PM", "closed": false },
+    { "day": "Thursday", "open": "", "close": "", "closed": true },
+    { "day": "Friday", "open": "12:30 PM", "close": "7 PM", "closed": false },
+    { "day": "Saturday", "open": "12:30 PM", "close": "6 PM", "closed": false },
+    { "day": "Sunday", "open": "12:30 PM", "close": "5 PM", "closed": false }
+  ],
+  "holidays": [
+    "Easter",
+    "Independence Day",
+    "Labor Day",
+    "Thanksgiving",
+    "Christmas",
+    "New Year's Day"
+  ],
+  "notice": ""
+}

@@ -1,0 +1,110 @@
+---
+interface Props {
+  variant?: 'ember' | 'flame' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+}
+
+const { 
+  variant = 'ember', 
+  size = 'md',
+  href,
+  class: className = '',
+  type = 'button',
+  disabled = false
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg'
+};
+
+const variantClasses = {
+  ember: 'btn-ember',
+  flame: 'btn-flame',
+  ghost: 'btn border-[--color-smoke] text-[--color-smoke-light] hover:border-[--color-ember] hover:text-[--color-ember]'
+};
+
+const classes = `btn ${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim();
+
+const Tag = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a href={href} class={classes}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes} disabled={disabled}>
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-panel);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    transform: translateY(100%);
+    transition: transform 0.3s var(--ease-panel);
+    z-index: -1;
+  }
+  
+  .btn:hover:not(:disabled)::before {
+    transform: translateY(0);
+  }
+  
+  .btn-ember {
+    color: var(--color-ember);
+    background: transparent;
+    border-color: var(--color-ember);
+  }
+  
+  .btn-ember:hover:not(:disabled) {
+    color: var(--color-ash);
+  }
+  
+  .btn-flame {
+    color: var(--color-ash);
+    background: var(--color-ember);
+    border-color: var(--color-ember-dark);
+  }
+  
+  .btn-flame::before {
+    background: var(--color-flame);
+  }
+  
+  .btn-flame:hover:not(:disabled) {
+    color: var(--color-ash);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+  }
+</style>

@@ -1,0 +1,172 @@
+---
+// Scroll progress Phoenix indicator - fills with fire as you scroll
+---
+
+<div id="scroll-phoenix" class="scroll-phoenix" aria-hidden="true">
+  <svg viewBox="0 0 40 60" class="phoenix-progress-svg">
+    <defs>
+      <!-- Clip path for fire fill -->
+      <clipPath id="phoenixClip">
+        <path d="M20 5 C10 15 5 28 8 42 C10 50 15 55 20 57 C25 55 30 50 32 42 C35 28 30 15 20 5" />
+      </clipPath>
+      
+      <!-- Fire gradient -->
+      <linearGradient id="scrollFireGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#e63946"/>
+        <stop offset="50%" style="stop-color:#ff6b35"/>
+        <stop offset="100%" style="stop-color:#f7c331"/>
+      </linearGradient>
+    </defs>
+    
+    <!-- Background outline -->
+    <path 
+      d="M20 5 C10 15 5 28 8 42 C10 50 15 55 20 57 C25 55 30 50 32 42 C35 28 30 15 20 5" 
+      fill="none"
+      stroke="var(--color-smoke)"
+      stroke-width="1.5"
+      opacity="0.3"
+    />
+    
+    <!-- Fire fill (masked by scroll progress) -->
+    <g clip-path="url(#phoenixClip)">
+      <rect 
+        id="phoenix-fill"
+        x="0" 
+        y="60" 
+        width="40" 
+        height="60" 
+        fill="url(#scrollFireGradient)"
+        class="phoenix-fill"
+      />
+    </g>
+    
+    <!-- Ember particles (show when near completion) -->
+    <g id="completion-embers" class="completion-embers" opacity="0">
+      <circle cx="15" cy="10" r="1" fill="#f7c331">
+        <animate attributeName="cy" values="10;0;10" dur="1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="25" cy="12" r="0.8" fill="#ff6b35">
+        <animate attributeName="cy" values="12;2;12" dur="0.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </svg>
+  
+  <!-- Percentage text -->
+  <span id="scroll-percent" class="scroll-percent">0%</span>
+</div>
+
+<style>
+  .scroll-phoenix {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .scroll-phoenix.visible {
+    opacity: 1;
+  }
+  
+  .phoenix-progress-svg {
+    width: 30px;
+    height: 45px;
+    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.3));
+  }
+  
+  .phoenix-fill {
+    transition: y 0.1s ease-out;
+  }
+  
+  .completion-embers {
+    transition: opacity 0.3s ease;
+  }
+  
+  .scroll-percent {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    color: var(--color-smoke-light);
+    letter-spacing: 0.1em;
+  }
+  
+  /* Hide on mobile */
+  @media (max-width: 768px) {
+    .scroll-phoenix {
+      display: none;
+    }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-phoenix {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const scrollPhoenix = document.getElementById('scroll-phoenix');
+  const phoenixFill = document.getElementById('phoenix-fill');
+  const scrollPercent = document.getElementById('scroll-percent');
+  const completionEmbers = document.getElementById('completion-embers');
+  
+  let lastScrollY = 0;
+  let ticking = false;
+  
+  function updateScrollProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = Math.min(scrollTop / docHeight, 1);
+    const percentage = Math.round(scrollProgress * 100);
+    
+    // Show/hide based on scroll position
+    if (scrollPhoenix) {
+      if (scrollTop > 100) {
+        scrollPhoenix.classList.add('visible');
+      } else {
+        scrollPhoenix.classList.remove('visible');
+      }
+    }
+    
+    // Update fire fill (y position from 60 to 0)
+    if (phoenixFill) {
+      const fillY = 60 - (scrollProgress * 60);
+      phoenixFill.setAttribute('y', fillY.toString());
+    }
+    
+    // Update percentage text
+    if (scrollPercent) {
+      scrollPercent.textContent = `${percentage}%`;
+    }
+    
+    // Show embers when near completion
+    if (completionEmbers) {
+      completionEmbers.style.opacity = scrollProgress > 0.9 ? '1' : '0';
+    }
+    
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', () => {
+    lastScrollY = window.scrollY;
+    
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateScrollProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Initial update
+  updateScrollProgress();
+</script>

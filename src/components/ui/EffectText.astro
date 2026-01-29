@@ -1,0 +1,75 @@
+---
+interface Props {
+  variant?: 'pow' | 'new' | 'hot' | 'sale' | 'custom';
+  rotation?: number;
+  class?: string;
+}
+
+const { 
+  variant = 'custom', 
+  rotation = -5,
+  class: className = '' 
+} = Astro.props;
+
+const variantStyles = {
+  pow: {
+    bg: 'var(--color-flame)',
+    color: 'var(--color-ash)',
+    shadow: 'var(--color-heat)'
+  },
+  new: {
+    bg: 'var(--color-ember)',
+    color: 'var(--color-paper)',
+    shadow: 'var(--color-heat)'
+  },
+  hot: {
+    bg: 'var(--color-heat)',
+    color: 'var(--color-paper)',
+    shadow: '#8b1a25'
+  },
+  sale: {
+    bg: 'var(--color-flame)',
+    color: 'var(--color-ash)',
+    shadow: 'var(--color-ember)'
+  },
+  custom: {
+    bg: 'var(--color-ember)',
+    color: 'var(--color-paper)',
+    shadow: 'var(--color-heat)'
+  }
+};
+
+const style = variantStyles[variant];
+---
+
+<span 
+  class:list={['effect-text', className]}
+  style={`--effect-bg: ${style.bg}; --effect-color: ${style.color}; --effect-shadow: ${style.shadow}; --rotation: ${rotation}deg;`}
+>
+  <slot />
+</span>
+
+<style>
+  .effect-text {
+    display: inline-block;
+    font-family: var(--font-comic);
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25em 0.75em;
+    background: var(--effect-bg);
+    color: var(--effect-color);
+    border: 3px solid #000;
+    border-radius: 4px;
+    transform: rotate(var(--rotation));
+    box-shadow: 
+      4px 4px 0 var(--effect-shadow),
+      6px 6px 0 #000;
+    transition: transform 0.2s var(--ease-bounce);
+  }
+  
+  .effect-text:hover {
+    transform: rotate(0deg) scale(1.1);
+  }
+</style>

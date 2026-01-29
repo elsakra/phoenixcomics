@@ -1,0 +1,338 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Panel from '../components/ui/Panel.astro';
+import Button from '../components/ui/Button.astro';
+import EffectText from '../components/ui/EffectText.astro';
+import Phoenix from '../components/effects/Phoenix.astro';
+
+// Sample events data - will be replaced with CMS data
+const upcomingEvents = [
+  {
+    title: "Free Comic Book Day 2026",
+    date: "2026-05-02",
+    description: "The biggest day in comics! Free comics, special deals, and surprises all day long.",
+    featured: true,
+    image: null
+  },
+  {
+    title: "New Comic Wednesday",
+    date: "Every Wednesday",
+    description: "Fresh comics arrive every Wednesday. Be the first to get the latest releases!",
+    featured: false,
+    recurring: true
+  }
+];
+
+const pastEvents = [
+  {
+    title: "Free Comic Book Day 2019",
+    date: "2019-05-04",
+    description: "Free comics, deals, discounts, and cosplayer photo ops!",
+    image: null
+  },
+  {
+    title: "Marvel Lenticular Covers Release",
+    date: "2017-10-04",
+    description: "Special release of Marvel Lenticular Homage Covers.",
+    image: null
+  }
+];
+
+function formatDate(dateStr: string) {
+  if (dateStr.startsWith("Every")) return dateStr;
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', { 
+    weekday: 'long',
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+}
+---
+
+<Layout title="Events | Phoenix Comics & Collectibles">
+  
+  <!-- Hero -->
+  <section class="pt-32 pb-12 md:pt-40 md:pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[--color-ash] via-[--color-ash-light] to-[--color-ash]"></div>
+    <div class="absolute inset-0 halftone opacity-20"></div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <EffectText variant="hot" rotation={-5} class="mb-6 inline-block">Issue #4</EffectText>
+      <h1 class="font-display text-5xl md:text-7xl text-[--color-paper] mb-6">
+        UPCOMING <span class="text-fire">ADVENTURES</span>
+      </h1>
+      <p class="text-xl text-[--color-smoke-light] max-w-2xl mx-auto">
+        Special events, releases, and celebrations at Phoenix Comics!
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Event (FCBD) -->
+  {upcomingEvents.filter(e => e.featured).map(event => (
+    <section class="py-16 md:py-24 bg-[--color-ash-light]">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Panel variant="broken" class="p-8 md:p-12 text-center relative overflow-hidden" data-animate>
+          <!-- Background decoration -->
+          <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-1/4 w-32 h-32 bg-[--color-ember] rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-40 h-40 bg-[--color-flame] rounded-full blur-3xl"></div>
+          </div>
+          
+          <div class="relative z-10">
+            <EffectText variant="sale" rotation={0} class="mb-6 inline-block text-lg">Featured Event</EffectText>
+            
+            <h2 class="font-display text-4xl md:text-6xl text-fire mb-4">
+              {event.title.toUpperCase()}
+            </h2>
+            
+            <p class="font-display text-2xl text-[--color-flame] mb-6">
+              {formatDate(event.date)}
+            </p>
+            
+            <p class="text-xl text-[--color-paper] mb-8 max-w-2xl mx-auto">
+              {event.description}
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+              <Button variant="flame" size="lg" href="/visit">
+                Plan Your Visit
+              </Button>
+              <Button variant="ember" size="lg" href="https://www.freecomicbookday.com" target="_blank">
+                Learn About FCBD
+              </Button>
+            </div>
+          </div>
+        </Panel>
+      </div>
+    </section>
+  ))}
+
+  <!-- Upcoming Events -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-4xl text-[--color-paper] mb-12 text-center">
+        UPCOMING <span class="text-[--color-ember]">EVENTS</span>
+      </h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {upcomingEvents.map((event, index) => (
+          <Panel 
+            variant="tilt" 
+            class="event-card relative overflow-hidden group" 
+            data-animate 
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <!-- Comic cover style -->
+            <div class="aspect-[3/4] bg-gradient-to-br from-[--color-ember] to-[--color-heat] relative">
+              <!-- Issue number style -->
+              <div class="absolute top-4 right-4 w-16 h-16 rounded-full bg-[--color-flame] flex items-center justify-center shadow-lg">
+                <span class="font-display text-2xl text-[--color-ash]">#{index + 1}</span>
+              </div>
+              
+              {event.recurring && (
+                <div class="absolute top-4 left-4">
+                  <EffectText variant="new" rotation={-5} class="text-xs">Weekly</EffectText>
+                </div>
+              )}
+              
+              <!-- Content -->
+              <div class="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                <h3 class="font-display text-2xl text-[--color-paper] mb-2">
+                  {event.title}
+                </h3>
+                <p class="font-comic text-[--color-flame] text-sm mb-3">
+                  {formatDate(event.date)}
+                </p>
+                <p class="text-[--color-smoke-light] text-sm line-clamp-2">
+                  {event.description}
+                </p>
+              </div>
+            </div>
+            
+            <!-- Hover overlay -->
+            <div class="absolute inset-0 bg-[--color-ember]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div class="text-center p-6">
+                <Phoenix size="md" class="mx-auto mb-4" />
+                <p class="font-display text-[--color-ash] text-xl">
+                  {event.recurring ? "EVERY WEEK!" : "DON'T MISS IT!"}
+                </p>
+              </div>
+            </div>
+          </Panel>
+        ))}
+        
+        <!-- Add Event Placeholder -->
+        <Panel variant="comic" class="aspect-[3/4] flex items-center justify-center border-dashed border-[--color-smoke]" data-animate>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 rounded-full border-2 border-dashed border-[--color-smoke] flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[--color-smoke]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+            </div>
+            <p class="font-display text-[--color-smoke] text-sm">MORE EVENTS COMING SOON</p>
+            <p class="text-[--color-smoke-light] text-xs mt-2">Follow us on social media!</p>
+          </div>
+        </Panel>
+      </div>
+    </div>
+  </section>
+
+  <!-- Weekly Events -->
+  <section class="py-16 md:py-24 bg-[--color-ash-light]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-4xl text-[--color-paper] mb-12 text-center">
+        EVERY <span class="text-[--color-ember]">WEEK</span>
+      </h2>
+      
+      <div class="max-w-2xl mx-auto">
+        <Panel variant="comic" class="p-8" data-animate>
+          <div class="flex items-start gap-6">
+            <div class="w-20 h-20 rounded-full bg-[--color-ember] flex items-center justify-center flex-shrink-0">
+              <span class="font-display text-3xl text-[--color-ash]">WED</span>
+            </div>
+            <div>
+              <h3 class="font-display text-2xl text-[--color-paper] mb-2">NEW COMIC WEDNESDAY</h3>
+              <p class="text-[--color-smoke-light] mb-4">
+                Every Wednesday, fresh comics hit the shelves! Be the first to grab the latest issues 
+                from Marvel, DC, Image, and more.
+              </p>
+              <div class="flex items-center gap-4 text-sm text-[--color-smoke-light]">
+                <span class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-[--color-ember]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                  </svg>
+                  Opens at 12:30 PM
+                </span>
+                <span class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-[--color-ember]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 4H3a2 2 0 00-2 2v12a2 2 0 002 2h18a2 2 0 002-2V6a2 2 0 00-2-2zm-9 12H6v-2h6v2zm0-4H6v-2h6v2zm0-4H6V6h6v2zm6 8h-4V6h4v10z"/>
+                  </svg>
+                  New issues weekly
+                </span>
+              </div>
+            </div>
+          </div>
+        </Panel>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past Events (Archive) -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-4xl text-[--color-paper] mb-4 text-center">
+        BACK <span class="text-[--color-smoke]">ISSUES</span>
+      </h2>
+      <p class="text-center text-[--color-smoke-light] mb-12">Past events from the Phoenix archives</p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {pastEvents.map((event, index) => (
+          <Panel 
+            variant="comic" 
+            class="p-6 opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300" 
+            data-animate
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded bg-[--color-smoke] flex items-center justify-center flex-shrink-0">
+                <span class="font-display text-lg text-[--color-ash]">#{index + 1}</span>
+              </div>
+              <div>
+                <h3 class="font-display text-lg text-[--color-paper] mb-1">{event.title}</h3>
+                <p class="font-comic text-[--color-smoke-light] text-xs mb-2">{formatDate(event.date)}</p>
+                <p class="text-[--color-smoke-light] text-sm">{event.description}</p>
+              </div>
+            </div>
+          </Panel>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-[--color-ash-light]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display text-3xl md:text-4xl text-[--color-paper] mb-6">
+        STAY IN THE <span class="text-fire">LOOP</span>
+      </h2>
+      <p class="text-[--color-smoke-light] text-lg mb-8">
+        Follow us on social media for the latest event announcements and updates!
+      </p>
+      <div class="flex justify-center gap-6">
+        <a 
+          href="https://www.facebook.com/phoenixcomicscollectibles" 
+          target="_blank" 
+          rel="noopener"
+          class="w-14 h-14 rounded-full bg-[--color-ash] flex items-center justify-center text-[--color-paper] hover:bg-blue-600 hover:text-white transition-all"
+        >
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+        <a 
+          href="https://www.youtube.com/@phoenixcomics" 
+          target="_blank" 
+          rel="noopener"
+          class="w-14 h-14 rounded-full bg-[--color-ash] flex items-center justify-center text-[--color-paper] hover:bg-red-600 hover:text-white transition-all"
+        >
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .text-fire {
+    background: linear-gradient(180deg, var(--color-flame) 0%, var(--color-ember) 50%, var(--color-heat) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-panel), transform 0.6s var(--ease-panel);
+  }
+  
+  [data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    [data-animate] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  const animatedElements = document.querySelectorAll('[data-animate]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  animatedElements.forEach(el => observer.observe(el));
+</script>

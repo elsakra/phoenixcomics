@@ -1,0 +1,456 @@
+@import "tailwindcss";
+
+/* ============================================
+   PHOENIX COMICS - "THE BURN" DESIGN SYSTEM
+   ============================================ */
+
+/* Color Palette: The Burn */
+@theme {
+  --color-ash: #0d0d0d;
+  --color-ash-light: #1a1a1a;
+  --color-ash-lighter: #252525;
+  --color-ember: #ff6b35;
+  --color-ember-dark: #e55a2b;
+  --color-ember-glow: #ff8c5a;
+  --color-flame: #f7c331;
+  --color-flame-bright: #ffd857;
+  --color-heat: #e63946;
+  --color-heat-dark: #c42d3a;
+  --color-smoke: #4a4a4a;
+  --color-smoke-light: #6b6b6b;
+  --color-paper: #f4f1de;
+  --color-paper-dark: #e8e4cf;
+  
+  /* Panel System */
+  --panel-border: 4px;
+  --panel-radius: 4px;
+  --panel-gutter: 1rem;
+  --panel-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  
+  /* Typography Scale */
+  --font-display: 'Bebas Neue', 'Oswald', sans-serif;
+  --font-body: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-comic: 'Bangers', 'Comic Neue', cursive;
+  
+  /* Animation Timing */
+  --ease-panel: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Z-index Scale */
+  --z-panel: 1;
+  --z-panel-hover: 10;
+  --z-nav: 100;
+  --z-modal: 200;
+  --z-cursor: 300;
+  --z-loader: 400;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-ash);
+  color: var(--color-paper);
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-ember);
+  color: var(--color-ash);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ash);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-smoke);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ember);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.text-comic {
+  font-family: var(--font-comic);
+  letter-spacing: 0.05em;
+}
+
+/* Effect Text - POW, WHAM, etc */
+.text-effect {
+  font-family: var(--font-comic);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  text-transform: uppercase;
+  color: var(--color-flame);
+  text-shadow: 
+    3px 3px 0 var(--color-heat),
+    6px 6px 0 var(--color-ash);
+  transform: rotate(-5deg);
+}
+
+/* ============================================
+   PANEL SYSTEM
+   ============================================ */
+
+.panel {
+  position: relative;
+  background: var(--color-ash-light);
+  border: var(--panel-border) solid var(--color-ash-lighter);
+  border-radius: var(--panel-radius);
+  box-shadow: var(--panel-shadow);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-panel), box-shadow 0.4s var(--ease-panel);
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.05) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+.panel:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    var(--panel-shadow),
+    0 0 30px rgba(255, 107, 53, 0.2);
+}
+
+/* Panel with thick comic border */
+.panel-comic {
+  border-width: 5px;
+  border-color: #000;
+  box-shadow: 
+    8px 8px 0 rgba(0, 0, 0, 0.3),
+    var(--panel-shadow);
+}
+
+/* Panel that breaks out of frame */
+.panel-broken {
+  clip-path: polygon(
+    0 5%, 5% 0, 95% 0, 100% 5%,
+    100% 95%, 95% 100%, 5% 100%, 0 95%
+  );
+}
+
+/* Tilted panel */
+.panel-tilt {
+  transform: rotate(-2deg);
+}
+
+.panel-tilt:hover {
+  transform: rotate(0deg) translateY(-4px) scale(1.02);
+}
+
+/* Full viewport panel */
+.panel-viewport {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============================================
+   HALFTONE & BEN-DAY DOTS
+   ============================================ */
+
+.halftone {
+  position: relative;
+}
+
+.halftone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at center,
+    var(--color-smoke) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  opacity: 0.15;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.halftone-gradient {
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--color-smoke) 0.5px,
+    transparent 0.5px
+  );
+  background-size: 3px 3px;
+}
+
+/* ============================================
+   SPEECH BUBBLES
+   ============================================ */
+
+.speech-bubble {
+  position: relative;
+  background: var(--color-paper);
+  color: var(--color-ash);
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+  border: 3px solid #000;
+  font-family: var(--font-comic);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 25px solid var(--color-paper);
+  filter: drop-shadow(0 3px 0 #000);
+}
+
+.thought-bubble {
+  position: relative;
+  background: var(--color-paper);
+  color: var(--color-ash);
+  padding: 1.5rem 2rem;
+  border-radius: 50%;
+  border: 3px solid #000;
+  font-family: var(--font-comic);
+}
+
+.thought-bubble::before,
+.thought-bubble::after {
+  content: '';
+  position: absolute;
+  background: var(--color-paper);
+  border: 3px solid #000;
+  border-radius: 50%;
+}
+
+.thought-bubble::before {
+  width: 20px;
+  height: 20px;
+  bottom: -15px;
+  left: 25px;
+}
+
+.thought-bubble::after {
+  width: 12px;
+  height: 12px;
+  bottom: -30px;
+  left: 15px;
+}
+
+/* ============================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 3px solid currentColor;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-panel);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  transform: translateY(100%);
+  transition: transform 0.3s var(--ease-panel);
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: translateY(0);
+}
+
+.btn-ember {
+  color: var(--color-ember);
+  background: transparent;
+}
+
+.btn-ember:hover {
+  color: var(--color-ash);
+}
+
+.btn-flame {
+  color: var(--color-ash);
+  background: var(--color-ember);
+  border-color: var(--color-ember-dark);
+}
+
+.btn-flame:hover {
+  background: var(--color-flame);
+  border-color: var(--color-ember);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* ============================================
+   GLOW & FIRE EFFECTS
+   ============================================ */
+
+.glow-ember {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+}
+
+.glow-flame {
+  box-shadow: 0 0 30px rgba(247, 195, 49, 0.5);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px currentColor;
+}
+
+/* Fire gradient text */
+.text-fire {
+  background: linear-gradient(
+    180deg,
+    var(--color-flame) 0%,
+    var(--color-ember) 50%,
+    var(--color-heat) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.7);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes burn-in {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-1deg); }
+  75% { transform: translateX(5px) rotate(1deg); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 0.1s ease-in-out infinite;
+}
+
+.animate-burn-in {
+  animation: burn-in 0.8s var(--ease-panel) forwards;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+/* Mobile panel adjustments */
+@media (max-width: 768px) {
+  :root {
+    --panel-gutter: 0.5rem;
+    --panel-border: 3px;
+  }
+  
+  .panel-tilt {
+    transform: none;
+  }
+}

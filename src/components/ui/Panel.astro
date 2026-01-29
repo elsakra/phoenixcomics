@@ -1,0 +1,67 @@
+---
+interface Props {
+  variant?: 'default' | 'comic' | 'broken' | 'tilt' | 'viewport';
+  class?: string;
+  id?: string;
+  as?: 'div' | 'section' | 'article';
+}
+
+const { 
+  variant = 'default', 
+  class: className = '', 
+  id,
+  as: Tag = 'section'
+} = Astro.props;
+
+const variantClasses = {
+  default: 'panel',
+  comic: 'panel panel-comic',
+  broken: 'panel panel-broken',
+  tilt: 'panel panel-tilt',
+  viewport: 'panel panel-viewport'
+};
+
+const classes = `${variantClasses[variant]} ${className}`.trim();
+---
+
+<Tag id={id} class={classes}>
+  <slot />
+</Tag>
+
+<style>
+  /* Additional panel styles specific to this component */
+  .panel {
+    position: relative;
+    will-change: transform;
+  }
+  
+  /* Panel entrance animation */
+  .panel[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-panel), transform 0.6s var(--ease-panel);
+  }
+  
+  .panel[data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Intersection Observer for panel animations
+  const panels = document.querySelectorAll('.panel[data-animate]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  panels.forEach(panel => observer.observe(panel));
+</script>

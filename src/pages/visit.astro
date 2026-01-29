@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Panel from '../components/ui/Panel.astro';
+import Button from '../components/ui/Button.astro';
+import EffectText from '../components/ui/EffectText.astro';
+import Phoenix from '../components/effects/Phoenix.astro';
+---
+
+<Layout title="Visit Us | Phoenix Comics & Collectibles">
+  
+  <!-- Hero with Map -->
+  <section class="pt-32 pb-12 md:pt-40 md:pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[--color-ash] via-[--color-ash-light] to-[--color-ash]"></div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <EffectText variant="pow" rotation={-5} class="mb-6 inline-block">Issue #3</EffectText>
+      <h1 class="font-display text-5xl md:text-7xl text-[--color-paper] mb-6">
+        FIND THE <span class="text-fire">LAIR</span>
+      </h1>
+      <p class="text-xl text-[--color-smoke-light] max-w-2xl mx-auto">
+        Your adventure awaits in Hicksville, Long Island.
+      </p>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-8 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Panel variant="comic" class="overflow-hidden" data-animate>
+        <div class="relative aspect-video md:aspect-[21/9]">
+          <!-- Google Maps embed -->
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.5!2d-73.5251!3d40.7682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c280d4a68e5db7%3A0x8d3c3b58c6e7f7c1!2s107%20Stewart%20Ave%2C%20Hicksville%2C%20NY%2011801!5e0!3m2!1sen!2sus!4v1706500000000!5m2!1sen!2sus"
+            class="w-full h-full border-0 grayscale-[30%] hover:grayscale-0 transition-all duration-500"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          
+          <!-- Phoenix marker overlay -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full pointer-events-none">
+            <div class="animate-float">
+              <Phoenix size="md" />
+            </div>
+          </div>
+          
+          <!-- Address overlay -->
+          <div class="absolute bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80">
+            <div class="bg-[--color-ash]/95 backdrop-blur-sm rounded-lg p-4 border-2 border-[--color-ember]">
+              <h3 class="font-display text-lg text-[--color-ember] mb-2">PHOENIX COMICS</h3>
+              <p class="text-[--color-paper] text-sm">107-5 Stewart Avenue</p>
+              <p class="text-[--color-paper] text-sm">Hicksville, NY 11801</p>
+              <a 
+                href="https://goo.gl/maps/MnUUDu2b24Q2" 
+                target="_blank" 
+                rel="noopener"
+                class="inline-flex items-center gap-2 mt-3 text-[--color-ember] hover:text-[--color-flame] transition-colors text-sm font-display"
+              >
+                GET DIRECTIONS
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </Panel>
+    </div>
+  </section>
+
+  <!-- Hours Section -->
+  <section class="py-16 md:py-24 bg-[--color-ash-light]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        
+        <!-- Hours Panel -->
+        <Panel variant="comic" class="p-8" data-animate>
+          <div class="flex items-center gap-4 mb-8">
+            <!-- Swinging OPEN sign -->
+            <div class="open-sign relative">
+              <div class="bg-[--color-ember] text-[--color-ash] font-display text-xl px-6 py-3 rounded border-4 border-[--color-ash] shadow-lg transform origin-top animate-swing">
+                OPEN
+              </div>
+            </div>
+            <h2 class="font-display text-3xl text-[--color-paper]">HOURS</h2>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="flex justify-between items-center py-2 border-b border-[--color-ash-lighter]">
+              <span class="font-comic text-[--color-paper]">Monday</span>
+              <span class="font-display text-[--color-heat]">CLOSED</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-[--color-ash-lighter]">
+              <span class="font-comic text-[--color-paper]">Tuesday</span>
+              <span class="font-display text-[--color-smoke-light]">1 PM – 6 PM</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-[--color-ash-lighter]">
+              <span class="font-comic text-[--color-paper]">Wednesday</span>
+              <span class="font-display text-[--color-ember]">12:30 PM – 7 PM</span>
+              <EffectText variant="new" rotation={-3} class="text-xs ml-2">NEW COMICS!</EffectText>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-[--color-ash-lighter]">
+              <span class="font-comic text-[--color-paper]">Thursday</span>
+              <span class="font-display text-[--color-heat]">CLOSED</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-[--color-ash-lighter]">
+              <span class="font-comic text-[--color-paper]">Friday</span>
+              <span class="font-display text-[--color-smoke-light]">12:30 PM – 7 PM</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-[--color-ash-lighter]">
+              <span class="font-comic text-[--color-paper]">Saturday</span>
+              <span class="font-display text-[--color-smoke-light]">12:30 PM – 6 PM</span>
+            </div>
+            <div class="flex justify-between items-center py-2">
+              <span class="font-comic text-[--color-paper]">Sunday</span>
+              <span class="font-display text-[--color-smoke-light]">12:30 PM – 5 PM</span>
+            </div>
+          </div>
+          
+          <div class="mt-8 p-4 bg-[--color-ash] rounded-lg">
+            <p class="text-sm text-[--color-smoke-light]">
+              <strong class="text-[--color-heat]">Holiday Closures:</strong> Easter, Independence Day, 
+              Labor Day, Thanksgiving, Christmas, New Year's Day
+            </p>
+          </div>
+        </Panel>
+
+        <!-- Contact & Directions -->
+        <div class="space-y-8">
+          <!-- Contact Panel -->
+          <Panel variant="tilt" class="p-8" data-animate style="animation-delay: 0.1s;">
+            <h2 class="font-display text-2xl text-[--color-paper] mb-6">CONTACT</h2>
+            
+            <div class="space-y-4">
+              <a href="tel:+15169399129" class="flex items-center gap-4 text-[--color-paper] hover:text-[--color-ember] transition-colors group">
+                <div class="w-12 h-12 rounded-full bg-[--color-ember]/20 flex items-center justify-center text-[--color-ember] group-hover:bg-[--color-ember] group-hover:text-[--color-ash] transition-all">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display text-sm text-[--color-smoke-light]">PHONE</div>
+                  <div class="text-lg">(516) 939-9129</div>
+                </div>
+              </a>
+              
+              <a href="mailto:ph.rebirth@gmail.com" class="flex items-center gap-4 text-[--color-paper] hover:text-[--color-ember] transition-colors group">
+                <div class="w-12 h-12 rounded-full bg-[--color-flame]/20 flex items-center justify-center text-[--color-flame] group-hover:bg-[--color-flame] group-hover:text-[--color-ash] transition-all">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display text-sm text-[--color-smoke-light]">EMAIL</div>
+                  <div class="text-lg">ph.rebirth@gmail.com</div>
+                </div>
+              </a>
+            </div>
+          </Panel>
+
+          <!-- Directions Panel -->
+          <Panel variant="comic" class="p-8" data-animate style="animation-delay: 0.2s;">
+            <h2 class="font-display text-2xl text-[--color-paper] mb-6">DIRECTIONS</h2>
+            
+            <div class="space-y-4">
+              <div>
+                <h3 class="font-display text-sm text-[--color-ember] mb-2">VIA MEADOWBROOK PARKWAY</h3>
+                <p class="text-[--color-smoke-light] text-sm leading-relaxed">
+                  Take exit M5 heading east on Hempstead Turnpike. Make a left onto Carman Avenue, 
+                  then right onto Stewart Avenue at the Mobil station. We're on the right in Stewart Plaza.
+                </p>
+              </div>
+              
+              <div>
+                <h3 class="font-display text-sm text-[--color-ember] mb-2">PARKING</h3>
+                <p class="text-[--color-smoke-light] text-sm leading-relaxed">
+                  Free parking available in the Stewart Plaza lot, directly in front of the store.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-6">
+              <Button variant="ember" href="https://goo.gl/maps/MnUUDu2b24Q2" class="w-full justify-center">
+                Open in Google Maps
+              </Button>
+            </div>
+          </Panel>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect Section -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl text-[--color-paper]">
+          WHAT TO <span class="text-[--color-ember]">EXPECT</span>
+        </h2>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Panel variant="tilt" class="p-6" data-animate>
+          <div class="text-[--color-ember] mb-4">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-[--color-paper] mb-2">FRIENDLY SERVICE</h3>
+          <p class="text-[--color-smoke-light] text-sm">
+            A laid-back atmosphere where all fans are welcome. No gatekeeping, just passion.
+          </p>
+        </Panel>
+        
+        <Panel variant="tilt" class="p-6" data-animate style="animation-delay: 0.1s;">
+          <div class="text-[--color-flame] mb-4">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21 4H3a2 2 0 00-2 2v12a2 2 0 002 2h18a2 2 0 002-2V6a2 2 0 00-2-2zm-9 12H6v-2h6v2zm0-4H6v-2h6v2zm0-4H6V6h6v2zm6 8h-4V6h4v10z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-[--color-paper] mb-2">MASSIVE SELECTION</h3>
+          <p class="text-[--color-smoke-light] text-sm">
+            Comics from all eras, manga, graphic novels, sci-fi and horror novels by the thousands.
+          </p>
+        </Panel>
+        
+        <Panel variant="tilt" class="p-6" data-animate style="animation-delay: 0.2s;">
+          <div class="text-[--color-heat] mb-4">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-[--color-paper] mb-2">EXPERT KNOWLEDGE</h3>
+          <p class="text-[--color-smoke-light] text-sm">
+            30+ years of experience. Get recommendations tailored to your tastes.
+          </p>
+        </Panel>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-[--color-ash-light]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Phoenix size="lg" class="mx-auto mb-8" />
+      <h2 class="font-display text-3xl md:text-4xl text-[--color-paper] mb-6">
+        SEE YOU <span class="text-fire">SOON!</span>
+      </h2>
+      <p class="text-[--color-smoke-light] text-lg mb-8">
+        New comics arrive every Wednesday. Don't miss out!
+      </p>
+      <Button variant="flame" size="lg" href="/contact">
+        Questions? Contact Us
+      </Button>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .text-fire {
+    background: linear-gradient(180deg, var(--color-flame) 0%, var(--color-ember) 50%, var(--color-heat) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  @keyframes swing {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  
+  .animate-swing {
+    animation: swing 2s ease-in-out infinite;
+  }
+  
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-panel), transform 0.6s var(--ease-panel);
+  }
+  
+  [data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .animate-swing {
+      animation: none;
+    }
+    [data-animate] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  const animatedElements = document.querySelectorAll('[data-animate]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  animatedElements.forEach(el => observer.observe(el));
+</script>

@@ -1,0 +1,268 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  animated?: boolean;
+  class?: string;
+}
+
+const { 
+  size = 'md', 
+  animated = true,
+  class: className = '' 
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-12 h-12',
+  md: 'w-24 h-24',
+  lg: 'w-40 h-40',
+  xl: 'w-64 h-64'
+};
+---
+
+<div class:list={['phoenix-container', sizeClasses[size], className]}>
+  <svg 
+    viewBox="0 0 200 200" 
+    class:list={['phoenix-svg', { 'phoenix-animated': animated }]}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <!-- Fire Gradient -->
+      <linearGradient id="phoenixFireGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#e63946">
+          <animate attributeName="stop-color" values="#e63946;#ff6b35;#e63946" dur="2s" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="50%" style="stop-color:#ff6b35">
+          <animate attributeName="stop-color" values="#ff6b35;#f7c331;#ff6b35" dur="2s" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" style="stop-color:#f7c331">
+          <animate attributeName="stop-color" values="#f7c331;#fff5c0;#f7c331" dur="2s" repeatCount="indefinite"/>
+        </stop>
+      </linearGradient>
+      
+      <!-- Glow Filter -->
+      <filter id="phoenixGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      
+      <!-- Inner glow -->
+      <radialGradient id="phoenixInnerGlow" cx="50%" cy="30%" r="50%" fx="50%" fy="30%">
+        <stop offset="0%" style="stop-color:#fff5c0;stop-opacity:0.8"/>
+        <stop offset="100%" style="stop-color:#ff6b35;stop-opacity:0"/>
+      </radialGradient>
+    </defs>
+    
+    <!-- Outer flames (background) -->
+    <g class="outer-flames" opacity="0.6">
+      <path 
+        d="M100 20 C60 60 40 100 50 140 C55 160 70 175 85 180 L100 200 L115 180 C130 175 145 160 150 140 C160 100 140 60 100 20" 
+        fill="url(#phoenixFireGradient)"
+        filter="url(#phoenixGlow)"
+      >
+        <animate 
+          attributeName="d" 
+          dur="1.5s" 
+          repeatCount="indefinite"
+          values="
+            M100 20 C60 60 40 100 50 140 C55 160 70 175 85 180 L100 200 L115 180 C130 175 145 160 150 140 C160 100 140 60 100 20;
+            M100 15 C55 55 35 95 45 135 C52 158 68 178 88 185 L100 205 L112 185 C132 178 148 158 155 135 C165 95 145 55 100 15;
+            M100 20 C60 60 40 100 50 140 C55 160 70 175 85 180 L100 200 L115 180 C130 175 145 160 150 140 C160 100 140 60 100 20
+          "
+        />
+      </path>
+    </g>
+    
+    <!-- Main phoenix body -->
+    <g class="phoenix-body">
+      <!-- Wings spread -->
+      <path 
+        class="wing-left"
+        d="M100 80 C70 60 40 70 20 100 C35 90 50 85 70 90 C80 92 90 95 100 100"
+        fill="url(#phoenixFireGradient)"
+        opacity="0.9"
+      >
+        <animate 
+          attributeName="d" 
+          dur="2s" 
+          repeatCount="indefinite"
+          values="
+            M100 80 C70 60 40 70 20 100 C35 90 50 85 70 90 C80 92 90 95 100 100;
+            M100 75 C65 50 30 55 10 90 C30 78 50 75 72 82 C82 85 92 92 100 100;
+            M100 80 C70 60 40 70 20 100 C35 90 50 85 70 90 C80 92 90 95 100 100
+          "
+        />
+      </path>
+      
+      <path 
+        class="wing-right"
+        d="M100 80 C130 60 160 70 180 100 C165 90 150 85 130 90 C120 92 110 95 100 100"
+        fill="url(#phoenixFireGradient)"
+        opacity="0.9"
+      >
+        <animate 
+          attributeName="d" 
+          dur="2s" 
+          repeatCount="indefinite"
+          values="
+            M100 80 C130 60 160 70 180 100 C165 90 150 85 130 90 C120 92 110 95 100 100;
+            M100 75 C135 50 170 55 190 90 C170 78 150 75 128 82 C118 85 108 92 100 100;
+            M100 80 C130 60 160 70 180 100 C165 90 150 85 130 90 C120 92 110 95 100 100
+          "
+        />
+      </path>
+      
+      <!-- Body core -->
+      <path 
+        d="M100 50 C75 75 65 110 72 140 C77 158 88 172 100 175 C112 172 123 158 128 140 C135 110 125 75 100 50" 
+        fill="url(#phoenixFireGradient)"
+      >
+        <animate 
+          attributeName="d" 
+          dur="3s" 
+          repeatCount="indefinite"
+          values="
+            M100 50 C75 75 65 110 72 140 C77 158 88 172 100 175 C112 172 123 158 128 140 C135 110 125 75 100 50;
+            M100 45 C72 72 62 108 70 138 C76 157 87 173 100 178 C113 173 124 157 130 138 C138 108 128 72 100 45;
+            M100 50 C75 75 65 110 72 140 C77 158 88 172 100 175 C112 172 123 158 128 140 C135 110 125 75 100 50
+          "
+        />
+      </path>
+      
+      <!-- Inner glow -->
+      <ellipse 
+        cx="100" 
+        cy="100" 
+        rx="25" 
+        ry="40" 
+        fill="url(#phoenixInnerGlow)"
+        opacity="0.7"
+      >
+        <animate attributeName="opacity" values="0.7;0.9;0.7" dur="1.5s" repeatCount="indefinite"/>
+      </ellipse>
+      
+      <!-- Head -->
+      <ellipse 
+        cx="100" 
+        cy="60" 
+        rx="12" 
+        ry="15" 
+        fill="#fff5c0"
+        opacity="0.9"
+      />
+      
+      <!-- Eye -->
+      <circle cx="100" cy="58" r="3" fill="#e63946"/>
+    </g>
+    
+    <!-- Tail flames -->
+    <g class="tail-flames">
+      <path 
+        d="M90 175 C85 190 88 200 95 195 C92 185 93 178 95 175"
+        fill="url(#phoenixFireGradient)"
+        opacity="0.8"
+      >
+        <animate 
+          attributeName="d" 
+          dur="0.8s" 
+          repeatCount="indefinite"
+          values="
+            M90 175 C85 190 88 200 95 195 C92 185 93 178 95 175;
+            M88 175 C82 195 86 208 94 200 C90 188 92 180 95 175;
+            M90 175 C85 190 88 200 95 195 C92 185 93 178 95 175
+          "
+        />
+      </path>
+      <path 
+        d="M100 178 C100 195 102 205 100 200 C98 205 100 195 100 178"
+        fill="url(#phoenixFireGradient)"
+        opacity="0.9"
+      >
+        <animate 
+          attributeName="d" 
+          dur="0.7s" 
+          repeatCount="indefinite"
+          values="
+            M100 178 C100 195 102 210 100 205 C98 210 100 195 100 178;
+            M100 178 C100 200 103 218 100 212 C97 218 100 200 100 178;
+            M100 178 C100 195 102 210 100 205 C98 210 100 195 100 178
+          "
+        />
+      </path>
+      <path 
+        d="M110 175 C115 190 112 200 105 195 C108 185 107 178 105 175"
+        fill="url(#phoenixFireGradient)"
+        opacity="0.8"
+      >
+        <animate 
+          attributeName="d" 
+          dur="0.9s" 
+          repeatCount="indefinite"
+          values="
+            M110 175 C115 190 112 200 105 195 C108 185 107 178 105 175;
+            M112 175 C118 195 114 208 106 200 C110 188 108 180 105 175;
+            M110 175 C115 190 112 200 105 195 C108 185 107 178 105 175
+          "
+        />
+      </path>
+    </g>
+    
+    <!-- Sparks/embers -->
+    <g class="sparks">
+      <circle cx="70" cy="50" r="2" fill="#f7c331">
+        <animate attributeName="cy" values="50;30;50" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="130" cy="55" r="1.5" fill="#ff6b35">
+        <animate attributeName="cy" values="55;35;55" dur="1.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="85" cy="45" r="1" fill="#f7c331">
+        <animate attributeName="cy" values="45;20;45" dur="2.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="2.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="115" cy="48" r="1.5" fill="#ff6b35">
+        <animate attributeName="cy" values="48;25;48" dur="1.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="1.6s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .phoenix-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .phoenix-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
+  }
+  
+  .phoenix-animated {
+    animation: phoenix-float 4s ease-in-out infinite;
+  }
+  
+  @keyframes phoenix-float {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.02);
+    }
+  }
+  
+  /* Pause animations when reduced motion is preferred */
+  @media (prefers-reduced-motion: reduce) {
+    .phoenix-svg,
+    .phoenix-svg * {
+      animation: none !important;
+    }
+  }
+</style>

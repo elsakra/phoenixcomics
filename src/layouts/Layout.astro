@@ -1,0 +1,438 @@
+---
+import CursorEffects from '../components/effects/CursorEffects.astro';
+import ScrollPhoenix from '../components/effects/ScrollPhoenix.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description = "Phoenix Comics & Collectibles - Your Long Island haven for comics, manga, sci-fi novels, and collectibles. 30+ years of passion.",
+  image = "/og-image.jpg"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ComicStore",
+        "name": "Phoenix Comics & Collectibles",
+        "image": "https://phoenixcomics.com/store-image.jpg",
+        "telephone": "(516) 939-9129",
+        "email": "ph.rebirth@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "107-5 Stewart Avenue",
+          "addressLocality": "Hicksville",
+          "addressRegion": "NY",
+          "postalCode": "11801",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.7682,
+          "longitude": -73.5251
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Tuesday",
+            "opens": "13:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Wednesday", "Friday"],
+            "opens": "12:30",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "12:30",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "12:30",
+            "closes": "17:00"
+          }
+        ],
+        "priceRange": "$$",
+        "url": "https://phoenixcomics.com"
+      }
+    </script>
+    
+    <title>{title}</title>
+    
+    <!-- Global Styles -->
+    <style is:global>
+      @import '../styles/global.css';
+    </style>
+  </head>
+  
+  <body class="bg-[--color-ash] text-[--color-paper] min-h-screen">
+    <!-- Cursor Effects -->
+    <CursorEffects />
+    
+    <!-- Scroll Progress Phoenix -->
+    <ScrollPhoenix />
+    
+    <!-- Loading Screen -->
+    <div id="loader" class="fixed inset-0 z-[--z-loader] bg-[--color-ash] flex items-center justify-center transition-opacity duration-500">
+      <div class="phoenix-loader">
+        <svg viewBox="0 0 100 100" class="w-24 h-24 animate-pulse-glow">
+          <defs>
+            <linearGradient id="fireGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" style="stop-color:#e63946" />
+              <stop offset="50%" style="stop-color:#ff6b35" />
+              <stop offset="100%" style="stop-color:#f7c331" />
+            </linearGradient>
+          </defs>
+          <path 
+            fill="url(#fireGradient)" 
+            d="M50 10 C30 30 20 50 25 70 C30 85 45 95 50 95 C55 95 70 85 75 70 C80 50 70 30 50 10 M50 25 C60 40 65 55 60 70 C57 80 53 85 50 85 C47 85 43 80 40 70 C35 55 40 40 50 25"
+            class="animate-flicker"
+          />
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-[--z-nav] transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+          <!-- Logo -->
+          <a href="/" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 md:w-12 md:h-12 relative">
+              <svg viewBox="0 0 100 100" class="w-full h-full transition-transform duration-300 group-hover:scale-110">
+                <defs>
+                  <linearGradient id="logoGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" style="stop-color:#e63946" />
+                    <stop offset="50%" style="stop-color:#ff6b35" />
+                    <stop offset="100%" style="stop-color:#f7c331" />
+                  </linearGradient>
+                </defs>
+                <path 
+                  fill="url(#logoGradient)" 
+                  d="M50 5 C25 30 15 55 22 75 C28 90 42 98 50 98 C58 98 72 90 78 75 C85 55 75 30 50 5"
+                />
+              </svg>
+            </div>
+            <span class="font-display text-xl md:text-2xl tracking-wide text-[--color-paper] hidden sm:block">
+              PHOENIX <span class="text-[--color-ember]">COMICS</span>
+            </span>
+          </a>
+          
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center gap-8">
+            <a href="/about" class="nav-link">About</a>
+            <a href="/visit" class="nav-link">Visit</a>
+            <a href="/services" class="nav-link">Services</a>
+            <a href="/events" class="nav-link">Events</a>
+            <a href="/contact" class="nav-link">Contact</a>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-[--color-paper] hover:text-[--color-ember] transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Scroll Progress Bar -->
+      <div id="scroll-progress" class="h-1 bg-gradient-to-r from-[--color-heat] via-[--color-ember] to-[--color-flame] origin-left scale-x-0"></div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[99] bg-[--color-ash]/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 md:hidden">
+      <div class="flex flex-col items-center justify-center h-full gap-8">
+        <a href="/about" class="mobile-nav-link">About</a>
+        <a href="/visit" class="mobile-nav-link">Visit</a>
+        <a href="/services" class="mobile-nav-link">Services</a>
+        <a href="/events" class="mobile-nav-link">Events</a>
+        <a href="/contact" class="mobile-nav-link">Contact</a>
+        
+        <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 text-[--color-paper]">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+      <slot />
+    </main>
+    
+    <!-- Footer -->
+    <footer class="relative bg-[--color-ash-light] border-t-4 border-[--color-ember] mt-20">
+      <!-- Post-Credits Easter Egg -->
+      <div id="post-credits" class="hidden opacity-0 py-20 text-center">
+        <p class="text-[--color-smoke-light] text-sm mb-4">You found the post-credits scene!</p>
+        <h3 class="font-display text-3xl text-[--color-flame] mb-4">NEXT ISSUE...</h3>
+        <p class="text-[--color-paper] text-lg">Free Comic Book Day 2026</p>
+        <p class="text-[--color-smoke-light] text-sm mt-2">Coming Soon</p>
+      </div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Store Info -->
+          <div>
+            <h4 class="font-display text-xl text-[--color-ember] mb-4">PHOENIX COMICS</h4>
+            <p class="text-[--color-smoke-light] text-sm leading-relaxed">
+              Your Long Island haven for comics, manga, sci-fi novels, and collectibles. 
+              Serving the community for over 30 years.
+            </p>
+          </div>
+          
+          <!-- Hours -->
+          <div>
+            <h4 class="font-display text-xl text-[--color-ember] mb-4">HOURS</h4>
+            <ul class="text-sm space-y-1 text-[--color-smoke-light]">
+              <li><span class="text-[--color-paper]">Mon:</span> Closed</li>
+              <li><span class="text-[--color-paper]">Tue:</span> 1 PM – 6 PM</li>
+              <li><span class="text-[--color-paper]">Wed:</span> 12:30 PM – 7 PM</li>
+              <li><span class="text-[--color-paper]">Thu:</span> Closed</li>
+              <li><span class="text-[--color-paper]">Fri:</span> 12:30 PM – 7 PM</li>
+              <li><span class="text-[--color-paper]">Sat:</span> 12:30 PM – 6 PM</li>
+              <li><span class="text-[--color-paper]">Sun:</span> 12:30 PM – 5 PM</li>
+            </ul>
+          </div>
+          
+          <!-- Contact -->
+          <div>
+            <h4 class="font-display text-xl text-[--color-ember] mb-4">CONTACT</h4>
+            <address class="text-sm not-italic space-y-2 text-[--color-smoke-light]">
+              <p>107-5 Stewart Avenue</p>
+              <p>Hicksville, NY 11801</p>
+              <p class="pt-2">
+                <a href="tel:+15169399129" class="text-[--color-paper] hover:text-[--color-ember] transition-colors">
+                  (516) 939-9129
+                </a>
+              </p>
+              <p>
+                <a href="mailto:ph.rebirth@gmail.com" class="text-[--color-paper] hover:text-[--color-ember] transition-colors">
+                  ph.rebirth@gmail.com
+                </a>
+              </p>
+            </address>
+            
+            <!-- Social Links -->
+            <div class="flex gap-4 mt-4">
+              <a href="https://www.facebook.com/phoenixcomicscollectibles" target="_blank" rel="noopener" class="text-[--color-smoke-light] hover:text-[--color-ember] transition-colors" aria-label="Facebook">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="https://www.youtube.com/@phoenixcomics" target="_blank" rel="noopener" class="text-[--color-smoke-light] hover:text-[--color-ember] transition-colors" aria-label="YouTube">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              <a href="https://www.yelp.com/biz/phoenix-comics-and-collectibles-hicksville" target="_blank" rel="noopener" class="text-[--color-smoke-light] hover:text-[--color-ember] transition-colors" aria-label="Yelp">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M21.111 18.226c-.141.969-2.119 3.483-3.029 3.847-.311.124-.611.094-.85-.09-.154-.12-.314-.396-2.529-4.146l-.793-1.34c-.185-.31-.166-.678.053-.962.22-.285.606-.403.963-.295l1.531.455c4.039 1.196 4.165 1.266 4.294 1.394.239.235.413.602.36 1.137zm-7.619-2.534l-1.199 1.073c-.3.27-.71.31-1.05.1-.341-.21-.49-.6-.379-.987l.635-2.186c.123-.425.199-.687.245-.856.143-.524.538-.907 1.044-.988.507-.083.987.177 1.234.633.066.122.121.336.21.8l.296 1.577c.075.39-.062.791-.367 1.031-.155.124-.41.285-.669.503zm-3.18-5.736c-.247.393-.673.595-1.095.521l-1.512-.264c-4.121-.718-4.303-.773-4.443-.9-.306-.277-.448-.699-.36-1.127.126-.64 1.587-3.599 2.42-4.037.283-.148.597-.145.873.01.177.101.378.309 1.787 2.88l1.027 1.876c.2.367.169.81-.078 1.156-.084.117-.302.423-.619.885zm1.962-2.27c-.46.083-.878-.197-1.064-.633-.055-.127-.064-.16-.273-1.803l-.248-1.793c-.08-.577-.121-.883-.137-1.023-.038-.343.061-.685.281-.96.26-.327.651-.5 1.058-.462.136.013.485.074 1.33.295 2.143.561 3.164.921 3.54 1.21.335.257.474.638.392 1.066-.102.535-.344.942-.771 1.285-.143.114-.504.397-1.39 1.104l-1.438 1.149c-.134.107-.447.38-.8.565-.22.115-.33.115-.48.115z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="mt-12 pt-8 border-t border-[--color-ash-lighter] text-center">
+          <p class="text-[--color-smoke] text-sm">
+            &copy; {new Date().getFullYear()} Phoenix Comics & Collectibles. All rights reserved.
+          </p>
+          <p class="text-[--color-smoke] text-xs mt-2">
+            Rising from the ashes since 1993.
+          </p>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script>
+      // Remove loader when page is ready
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 500);
+        }
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenuClose = document.getElementById('mobile-menu-close');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      mobileMenuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.remove('translate-x-full');
+      });
+      
+      mobileMenuClose?.addEventListener('click', () => {
+        mobileMenu?.classList.add('translate-x-full');
+      });
+      
+      // Close mobile menu on link click
+      mobileMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+        });
+      });
+      
+      // Scroll progress indicator
+      const scrollProgress = document.getElementById('scroll-progress');
+      const nav = document.getElementById('main-nav');
+      
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = scrollTop / docHeight;
+        
+        if (scrollProgress) {
+          scrollProgress.style.transform = `scaleX(${scrollPercent})`;
+        }
+        
+        // Nav background on scroll
+        if (nav) {
+          if (scrollTop > 50) {
+            nav.classList.add('bg-[--color-ash]/90', 'backdrop-blur-lg', 'shadow-lg');
+          } else {
+            nav.classList.remove('bg-[--color-ash]/90', 'backdrop-blur-lg', 'shadow-lg');
+          }
+        }
+        
+        // Post-credits reveal (scroll past footer)
+        const footer = document.querySelector('footer');
+        const postCredits = document.getElementById('post-credits');
+        if (footer && postCredits) {
+          const footerRect = footer.getBoundingClientRect();
+          if (footerRect.top < window.innerHeight * 0.3) {
+            postCredits.classList.remove('hidden');
+            setTimeout(() => {
+              postCredits.style.opacity = '1';
+            }, 100);
+          }
+        }
+      });
+      
+      // Konami code easter egg
+      const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      let konamiIndex = 0;
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+          konamiIndex++;
+          if (konamiIndex === konamiCode.length) {
+            document.body.classList.add('retro-mode');
+            alert('🎮 RETRO MODE ACTIVATED! Refresh to disable.');
+            konamiIndex = 0;
+          }
+        } else {
+          konamiIndex = 0;
+        }
+      });
+    </script>
+    
+    <style>
+      /* Navigation link styles */
+      .nav-link {
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-paper);
+        position: relative;
+        padding: 0.5rem 0;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--color-ember);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-link:hover {
+        color: var(--color-ember);
+      }
+      
+      .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+      
+      .mobile-nav-link {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-paper);
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      
+      .mobile-nav-link:hover {
+        color: var(--color-ember);
+        transform: scale(1.1);
+      }
+      
+      /* Retro mode easter egg */
+      .retro-mode {
+        image-rendering: pixelated;
+        font-family: 'Courier New', monospace !important;
+      }
+      
+      .retro-mode * {
+        font-family: 'Courier New', monospace !important;
+        border-radius: 0 !important;
+      }
+    </style>
+  </body>
+</html>

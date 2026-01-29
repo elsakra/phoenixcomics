@@ -1,0 +1,131 @@
+---
+interface Props {
+  variant?: 'speech' | 'thought' | 'shout';
+  direction?: 'bottom' | 'left' | 'right' | 'top';
+  class?: string;
+}
+
+const { 
+  variant = 'speech', 
+  direction = 'bottom',
+  class: className = '' 
+} = Astro.props;
+
+const baseClasses = {
+  speech: 'speech-bubble',
+  thought: 'thought-bubble',
+  shout: 'shout-bubble'
+};
+
+const classes = `${baseClasses[variant]} bubble-${direction} ${className}`.trim();
+---
+
+<div class={classes}>
+  <slot />
+</div>
+
+<style>
+  .speech-bubble,
+  .thought-bubble,
+  .shout-bubble {
+    position: relative;
+    background: var(--color-paper);
+    color: var(--color-ash);
+    padding: 1rem 1.5rem;
+    font-family: var(--font-comic);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  /* Speech Bubble */
+  .speech-bubble {
+    border-radius: 1.5rem;
+    border: 3px solid #000;
+  }
+  
+  .speech-bubble.bubble-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 20px solid var(--color-paper);
+    filter: drop-shadow(0 3px 0 #000);
+  }
+  
+  .speech-bubble.bubble-left::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 20px solid var(--color-paper);
+    filter: drop-shadow(-3px 0 0 #000);
+  }
+  
+  .speech-bubble.bubble-right::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid var(--color-paper);
+    filter: drop-shadow(3px 0 0 #000);
+  }
+  
+  /* Thought Bubble */
+  .thought-bubble {
+    border-radius: 2rem;
+    border: 3px solid #000;
+  }
+  
+  .thought-bubble.bubble-bottom::before,
+  .thought-bubble.bubble-bottom::after {
+    content: '';
+    position: absolute;
+    background: var(--color-paper);
+    border: 3px solid #000;
+    border-radius: 50%;
+  }
+  
+  .thought-bubble.bubble-bottom::before {
+    width: 16px;
+    height: 16px;
+    bottom: -20px;
+    left: 30px;
+  }
+  
+  .thought-bubble.bubble-bottom::after {
+    width: 10px;
+    height: 10px;
+    bottom: -35px;
+    left: 22px;
+  }
+  
+  /* Shout Bubble */
+  .shout-bubble {
+    background: var(--color-flame);
+    border: 4px solid #000;
+    clip-path: polygon(
+      10% 0%, 25% 5%, 40% 0%, 55% 5%, 70% 0%, 85% 5%, 100% 0%,
+      95% 20%, 100% 40%, 95% 60%, 100% 80%, 95% 100%,
+      85% 95%, 70% 100%, 55% 95%, 40% 100%, 25% 95%, 10% 100%,
+      5% 80%, 0% 60%, 5% 40%, 0% 20%
+    );
+    padding: 1.5rem 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>

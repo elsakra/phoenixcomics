@@ -1,0 +1,137 @@
+# Decap CMS Configuration for Phoenix Comics & Collectibles
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Local backend for development
+local_backend: true
+
+# Media files
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Site URL
+site_url: https://phoenixcomics.com
+display_url: https://phoenixcomics.com
+
+# Logo for CMS
+logo_url: /favicon.svg
+
+# Slug settings
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# Collections
+collections:
+  # Blog Posts / News
+  - name: "blog"
+    label: "News & Blog"
+    label_singular: "Post"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "/blog/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Tags"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - "News"
+          - "New Releases"
+          - "Events"
+          - "Sales"
+          - "CGC"
+          - "Announcement"
+
+  # Events
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "src/content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: "Event Name", name: "title", widget: "string" }
+      - { label: "Event Date", name: "date", widget: "datetime" }
+      - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Full Details", name: "body", widget: "markdown", required: false }
+      - { label: "Featured Event", name: "featured", widget: "boolean", default: false }
+      - label: "Recurring"
+        name: "recurring"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Not Recurring", value: "" }
+          - { label: "Weekly", value: "weekly" }
+          - { label: "Monthly", value: "monthly" }
+          - { label: "Yearly", value: "yearly" }
+
+  # Site Settings
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      # Store Hours
+      - name: "hours"
+        label: "Store Hours"
+        file: "src/data/hours.json"
+        fields:
+          - label: "Hours"
+            name: "hours"
+            widget: "list"
+            fields:
+              - { label: "Day", name: "day", widget: "string" }
+              - { label: "Open Time", name: "open", widget: "string", required: false, hint: "e.g., 12:30 PM (leave empty if closed)" }
+              - { label: "Close Time", name: "close", widget: "string", required: false, hint: "e.g., 7 PM (leave empty if closed)" }
+              - { label: "Closed", name: "closed", widget: "boolean", default: false }
+          - label: "Holiday Closures"
+            name: "holidays"
+            widget: "list"
+            field: { label: "Holiday", name: "holiday", widget: "string" }
+          - label: "Special Hours Notice"
+            name: "notice"
+            widget: "text"
+            required: false
+            hint: "Any special notice about hours (e.g., holiday hours)"
+
+      # Contact Info
+      - name: "contact"
+        label: "Contact Information"
+        file: "src/data/contact.json"
+        fields:
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Address Line 1", name: "address1", widget: "string" }
+          - { label: "Address Line 2", name: "address2", widget: "string", required: false }
+          - { label: "City", name: "city", widget: "string" }
+          - { label: "State", name: "state", widget: "string" }
+          - { label: "ZIP", name: "zip", widget: "string" }
+          - { label: "Google Maps Link", name: "mapsLink", widget: "string", required: false }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+          - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
+          - { label: "Yelp URL", name: "yelp", widget: "string", required: false }
+
+      # About Page Content
+      - name: "about"
+        label: "About Page"
+        file: "src/data/about.json"
+        fields:
+          - { label: "Owner Name", name: "ownerName", widget: "string" }
+          - { label: "Owner Bio", name: "ownerBio", widget: "markdown" }
+          - { label: "Store Description", name: "storeDescription", widget: "markdown" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - label: "Favorite Comics"
+            name: "favorites"
+            widget: "list"
+            field: { label: "Title", name: "title", widget: "string" }

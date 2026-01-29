@@ -1,0 +1,319 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Panel from '../components/ui/Panel.astro';
+import Button from '../components/ui/Button.astro';
+import EffectText from '../components/ui/EffectText.astro';
+import Phoenix from '../components/effects/Phoenix.astro';
+---
+
+<Layout title="Contact | Phoenix Comics & Collectibles">
+  
+  <!-- Hero -->
+  <section class="pt-32 pb-12 md:pt-40 md:pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[--color-ash] via-[--color-ash-light] to-[--color-ash]"></div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <EffectText variant="pow" rotation={-5} class="mb-6 inline-block">Issue #5</EffectText>
+      <h1 class="font-display text-5xl md:text-7xl text-[--color-paper] mb-6">
+        SIGNAL THE <span class="text-fire">PHOENIX</span>
+      </h1>
+      <p class="text-xl text-[--color-smoke-light] max-w-2xl mx-auto">
+        Have a question? Looking for something specific? We're here to help!
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12">
+        
+        <!-- Contact Form -->
+        <Panel variant="comic" class="p-8 md:p-12" data-animate>
+          <h2 class="font-display text-2xl text-[--color-paper] mb-6">
+            SEND A <span class="text-[--color-ember]">MESSAGE</span>
+          </h2>
+          <p class="text-[--color-smoke-light] mb-8">
+            Like writing to your favorite superhero. We'll respond faster than a speeding bullet!
+          </p>
+          
+          <form id="contact-form" class="space-y-6">
+            <!-- Name Field -->
+            <div class="form-panel">
+              <label for="name" class="block font-display text-sm text-[--color-ember] mb-2">YOUR NAME *</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                class="w-full bg-[--color-ash] border-2 border-[--color-ash-lighter] rounded-lg px-4 py-3 text-[--color-paper] placeholder-[--color-smoke] focus:border-[--color-ember] focus:outline-none transition-colors"
+                placeholder="Enter your name"
+              />
+            </div>
+            
+            <!-- Email Field -->
+            <div class="form-panel">
+              <label for="email" class="block font-display text-sm text-[--color-ember] mb-2">YOUR EMAIL *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full bg-[--color-ash] border-2 border-[--color-ash-lighter] rounded-lg px-4 py-3 text-[--color-paper] placeholder-[--color-smoke] focus:border-[--color-ember] focus:outline-none transition-colors"
+                placeholder="your@email.com"
+              />
+            </div>
+            
+            <!-- Subject Field -->
+            <div class="form-panel">
+              <label for="subject" class="block font-display text-sm text-[--color-ember] mb-2">SUBJECT</label>
+              <select 
+                id="subject" 
+                name="subject"
+                class="w-full bg-[--color-ash] border-2 border-[--color-ash-lighter] rounded-lg px-4 py-3 text-[--color-paper] focus:border-[--color-ember] focus:outline-none transition-colors"
+              >
+                <option value="general">General Inquiry</option>
+                <option value="comic-search">Looking for a Comic</option>
+                <option value="pull-list">Pull List / Subscriptions</option>
+                <option value="cgc">CGC Grading</option>
+                <option value="events">Events</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <!-- Message Field -->
+            <div class="form-panel">
+              <label for="message" class="block font-display text-sm text-[--color-ember] mb-2">YOUR MESSAGE *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                required
+                class="w-full bg-[--color-ash] border-2 border-[--color-ash-lighter] rounded-lg px-4 py-3 text-[--color-paper] placeholder-[--color-smoke] focus:border-[--color-ember] focus:outline-none transition-colors resize-none"
+                placeholder="What can we help you with?"
+              ></textarea>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="pt-4">
+              <button 
+                type="submit" 
+                class="btn btn-flame w-full justify-center text-lg py-4 group"
+              >
+                <span>SEND MESSAGE</span>
+                <Phoenix size="sm" class="w-6 h-6 group-hover:animate-pulse" />
+              </button>
+            </div>
+          </form>
+          
+          <!-- Success Message (hidden by default) -->
+          <div id="form-success" class="hidden text-center py-12">
+            <Phoenix size="lg" class="mx-auto mb-6" />
+            <h3 class="font-display text-2xl text-[--color-flame] mb-4">MESSAGE SENT!</h3>
+            <p class="text-[--color-paper]">The Phoenix has received your signal.</p>
+            <p class="text-[--color-smoke-light] text-sm mt-2">We'll respond as soon as possible.</p>
+          </div>
+        </Panel>
+
+        <!-- Contact Info -->
+        <div class="space-y-8">
+          <!-- Quick Contact -->
+          <Panel variant="tilt" class="p-8" data-animate style="animation-delay: 0.1s;">
+            <h2 class="font-display text-2xl text-[--color-paper] mb-6">QUICK CONTACT</h2>
+            
+            <div class="space-y-6">
+              <a href="tel:+15169399129" class="flex items-start gap-4 text-[--color-paper] hover:text-[--color-ember] transition-colors group">
+                <div class="w-14 h-14 rounded-full bg-[--color-ember]/20 flex items-center justify-center text-[--color-ember] flex-shrink-0 group-hover:bg-[--color-ember] group-hover:text-[--color-ash] transition-all">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display text-sm text-[--color-smoke-light]">PHONE</div>
+                  <div class="text-xl font-display">(516) 939-9129</div>
+                  <div class="text-sm text-[--color-smoke-light] mt-1">Call during business hours</div>
+                </div>
+              </a>
+              
+              <a href="mailto:ph.rebirth@gmail.com" class="flex items-start gap-4 text-[--color-paper] hover:text-[--color-ember] transition-colors group">
+                <div class="w-14 h-14 rounded-full bg-[--color-flame]/20 flex items-center justify-center text-[--color-flame] flex-shrink-0 group-hover:bg-[--color-flame] group-hover:text-[--color-ash] transition-all">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display text-sm text-[--color-smoke-light]">EMAIL</div>
+                  <div class="text-xl font-display">ph.rebirth@gmail.com</div>
+                  <div class="text-sm text-[--color-smoke-light] mt-1">We'll respond within 24-48 hours</div>
+                </div>
+              </a>
+            </div>
+          </Panel>
+
+          <!-- Visit Us -->
+          <Panel variant="comic" class="p-8" data-animate style="animation-delay: 0.2s;">
+            <h2 class="font-display text-2xl text-[--color-paper] mb-6">VISIT IN PERSON</h2>
+            
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-full bg-[--color-heat]/20 flex items-center justify-center text-[--color-heat] flex-shrink-0">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display text-sm text-[--color-smoke-light]">ADDRESS</div>
+                  <div class="text-[--color-paper]">
+                    107-5 Stewart Avenue<br>
+                    Hicksville, NY 11801
+                  </div>
+                </div>
+              </div>
+              
+              <Button variant="ember" href="/visit" class="w-full justify-center mt-4">
+                Get Directions
+              </Button>
+            </div>
+          </Panel>
+
+          <!-- Social Links -->
+          <Panel variant="tilt" class="p-8" data-animate style="animation-delay: 0.3s;">
+            <h2 class="font-display text-2xl text-[--color-paper] mb-6">FOLLOW US</h2>
+            
+            <div class="flex gap-4">
+              <a 
+                href="https://www.facebook.com/phoenixcomicscollectibles" 
+                target="_blank" 
+                rel="noopener"
+                class="w-14 h-14 rounded-full bg-[--color-ash] flex items-center justify-center text-[--color-paper] hover:bg-blue-600 hover:text-white transition-all"
+                aria-label="Facebook"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              
+              <a 
+                href="https://www.youtube.com/@phoenixcomics" 
+                target="_blank" 
+                rel="noopener"
+                class="w-14 h-14 rounded-full bg-[--color-ash] flex items-center justify-center text-[--color-paper] hover:bg-red-600 hover:text-white transition-all"
+                aria-label="YouTube"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+              
+              <a 
+                href="https://www.yelp.com/biz/phoenix-comics-and-collectibles-hicksville" 
+                target="_blank" 
+                rel="noopener"
+                class="w-14 h-14 rounded-full bg-[--color-ash] flex items-center justify-center text-[--color-paper] hover:bg-[--color-heat] hover:text-white transition-all"
+                aria-label="Yelp"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21.111 18.226c-.141.969-2.119 3.483-3.029 3.847-.311.124-.611.094-.85-.09-.154-.12-.314-.396-2.529-4.146l-.793-1.34c-.185-.31-.166-.678.053-.962.22-.285.606-.403.963-.295l1.531.455c4.039 1.196 4.165 1.266 4.294 1.394.239.235.413.602.36 1.137z"/>
+                </svg>
+              </a>
+            </div>
+          </Panel>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .text-fire {
+    background: linear-gradient(180deg, var(--color-flame) 0%, var(--color-ember) 50%, var(--color-heat) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .form-panel {
+    position: relative;
+  }
+  
+  .form-panel::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-ash-lighter);
+    transition: background 0.3s ease;
+  }
+  
+  .form-panel:focus-within::before {
+    background: var(--color-ember);
+  }
+  
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-panel), transform 0.6s var(--ease-panel);
+  }
+  
+  [data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    [data-animate] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Animation observer
+  const animatedElements = document.querySelectorAll('[data-animate]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  animatedElements.forEach(el => observer.observe(el));
+  
+  // Form handling
+  const form = document.getElementById('contact-form');
+  const formSuccess = document.getElementById('form-success');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // In production, you would send this to a server or service like Formspree
+    // For now, just show success message
+    const formData = new FormData(form as HTMLFormElement);
+    
+    // Simulate form submission
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.textContent = 'SENDING...';
+      submitBtn.setAttribute('disabled', 'true');
+    }
+    
+    // Simulate delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Show success
+    form.classList.add('hidden');
+    formSuccess?.classList.remove('hidden');
+    
+    // Log form data (for demo purposes)
+    console.log('Form submitted:', Object.fromEntries(formData));
+  });
+</script>

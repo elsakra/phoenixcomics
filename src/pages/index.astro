@@ -1,0 +1,692 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Panel from '../components/ui/Panel.astro';
+import Button from '../components/ui/Button.astro';
+import SpeechBubble from '../components/ui/SpeechBubble.astro';
+import EffectText from '../components/ui/EffectText.astro';
+import Phoenix from '../components/effects/Phoenix.astro';
+---
+
+<Layout title="Phoenix Comics & Collectibles | Long Island's Premier Comic Shop">
+  
+  <!-- ==================== PANEL 1: HERO SPLASH PAGE ==================== -->
+  <section id="hero" class="hero-panel panel-viewport relative overflow-hidden">
+    <!-- Background with halftone -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[--color-ash] via-[--color-ash-light] to-[--color-ash]"></div>
+    <div class="absolute inset-0 halftone opacity-30"></div>
+    
+    <!-- Animated background flames -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="flame-bg flame-1"></div>
+      <div class="flame-bg flame-2"></div>
+      <div class="flame-bg flame-3"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <!-- Phoenix Animation -->
+      <div class="hero-phoenix mb-8">
+        <Phoenix size="xl" animated={true} />
+      </div>
+      
+      <!-- Title - burns in -->
+      <h1 class="hero-title font-display text-5xl md:text-7xl lg:text-8xl tracking-wider mb-6">
+        <span class="block text-fire animate-burn-in" style="animation-delay: 0.2s;">PHOENIX</span>
+        <span class="block text-[--color-paper] animate-burn-in" style="animation-delay: 0.4s;">COMICS</span>
+        <span class="block text-[--color-smoke-light] text-2xl md:text-3xl tracking-widest animate-burn-in" style="animation-delay: 0.6s;">& COLLECTIBLES</span>
+      </h1>
+      
+      <!-- Tagline in speech bubble -->
+      <div class="animate-burn-in max-w-2xl" style="animation-delay: 0.8s;">
+        <SpeechBubble variant="speech" direction="bottom" class="text-lg md:text-xl">
+          Your Long Island haven for comics, manga, sci-fi, horror novels, and collectibles!
+        </SpeechBubble>
+      </div>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-4 mt-12 animate-burn-in" style="animation-delay: 1s;">
+        <Button variant="flame" size="lg" href="/visit">
+          Visit the Lair
+        </Button>
+        <Button variant="ember" size="lg" href="/about">
+          Our Story
+        </Button>
+      </div>
+      
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+        <div class="flex flex-col items-center gap-2 text-[--color-smoke-light]">
+          <span class="text-sm font-display tracking-widest">SCROLL</span>
+          <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PANEL 2: ORIGIN STORY ==================== -->
+  <section id="origin" class="py-20 md:py-32 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        
+        <!-- Left: Vintage aesthetic panel -->
+        <Panel variant="tilt" class="p-8 md:p-12 origin-story-panel" data-animate>
+          <div class="relative">
+            <EffectText variant="new" rotation={-8} class="absolute -top-4 -left-4">
+              Est. 1993
+            </EffectText>
+            <h2 class="font-display text-4xl md:text-5xl text-[--color-ember] mt-6 mb-6">
+              30+ YEARS OF PASSION
+            </h2>
+            <p class="text-[--color-paper] text-lg leading-relaxed mb-6">
+              My name is <strong class="text-[--color-flame]">Peter Gong</strong>. I've been in comic book retail for over thirty years, 
+              but I've been a collector even longer. I like to refer to myself as "comic-sama."
+            </p>
+            <p class="text-[--color-smoke-light] leading-relaxed">
+              My personal tastes vary from the esoteric to the popular. From <em>Walking Dead</em> to 
+              <em>Usagi Yojimbo</em>, from classic 70s anime to the latest releases.
+            </p>
+          </div>
+        </Panel>
+        
+        <!-- Right: Modern quote panel -->
+        <div class="relative" data-animate style="animation-delay: 0.2s;">
+          <div class="thought-bubble-large p-8 md:p-12">
+            <blockquote class="text-xl md:text-2xl text-[--color-ash] font-comic leading-relaxed">
+              "My store is friendly and laid back, offering a welcome mat to all who embrace all facets of fandom."
+            </blockquote>
+            <cite class="block mt-6 text-[--color-smoke] text-sm">
+              — Peter Gong, Owner
+            </cite>
+          </div>
+          
+          <!-- Decorative comics in background -->
+          <div class="absolute -z-10 -right-4 -bottom-4 w-32 h-40 bg-[--color-ember] rounded opacity-20 transform rotate-6"></div>
+          <div class="absolute -z-10 -right-8 -bottom-8 w-32 h-40 bg-[--color-flame] rounded opacity-10 transform rotate-12"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PANEL 3: SERVICES GRID ==================== -->
+  <section id="services" class="py-20 md:py-32 bg-[--color-ash-light] relative overflow-hidden">
+    <!-- Diagonal lines background -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background: repeating-linear-gradient(45deg, transparent, transparent 10px, var(--color-ember) 10px, var(--color-ember) 11px);"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-6xl text-[--color-paper] mb-4">
+          WHAT <span class="text-[--color-ember]">AWAITS</span>
+        </h2>
+        <p class="text-[--color-smoke-light] text-lg max-w-2xl mx-auto">
+          More than just a store — a sanctuary for collectors, readers, and dreamers.
+        </p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Service Card 1 -->
+        <div class="service-card group" data-animate>
+          <Panel variant="comic" class="h-full p-6 text-center transition-all duration-300 group-hover:bg-[--color-ash-lighter]">
+            <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-[--color-ember] group-hover:scale-110 transition-transform">
+              <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M21 4H3a2 2 0 00-2 2v12a2 2 0 002 2h18a2 2 0 002-2V6a2 2 0 00-2-2zm-9 12H6v-2h6v2zm0-4H6v-2h6v2zm0-4H6V6h6v2zm6 8h-4V6h4v10z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-[--color-paper] mb-2">NEW COMICS</h3>
+            <p class="text-[--color-smoke-light] text-sm">Fresh releases every Wednesday. Never miss an issue.</p>
+          </Panel>
+        </div>
+        
+        <!-- Service Card 2 -->
+        <div class="service-card group" data-animate style="animation-delay: 0.1s;">
+          <Panel variant="comic" class="h-full p-6 text-center transition-all duration-300 group-hover:bg-[--color-ash-lighter]">
+            <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-[--color-flame] group-hover:scale-110 transition-transform">
+              <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-[--color-paper] mb-2">PULL LIST</h3>
+            <p class="text-[--color-smoke-light] text-sm">Subscribe to your favorites. We'll hold them for you.</p>
+          </Panel>
+        </div>
+        
+        <!-- Service Card 3 -->
+        <div class="service-card group" data-animate style="animation-delay: 0.2s;">
+          <Panel variant="comic" class="h-full p-6 text-center transition-all duration-300 group-hover:bg-[--color-ash-lighter]">
+            <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-[--color-heat] group-hover:scale-110 transition-transform">
+              <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-[--color-paper] mb-2">CGC GRADING</h3>
+            <p class="text-[--color-smoke-light] text-sm">Professional grading service. Preserve your treasures.</p>
+          </Panel>
+        </div>
+        
+        <!-- Service Card 4 -->
+        <div class="service-card group" data-animate style="animation-delay: 0.3s;">
+          <Panel variant="comic" class="h-full p-6 text-center transition-all duration-300 group-hover:bg-[--color-ash-lighter]">
+            <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-[--color-paper] group-hover:scale-110 transition-transform">
+              <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl text-[--color-paper] mb-2">GIFT CARDS</h3>
+            <p class="text-[--color-smoke-light] text-sm">The perfect gift for the collector in your life.</p>
+          </Panel>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <Button variant="ember" href="/services">
+          All Services
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PANEL 4: NEW RELEASES CAROUSEL ==================== -->
+  <section id="new-releases" class="py-20 md:py-32 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-12">
+        <div>
+          <EffectText variant="hot" rotation={-3} class="mb-4 inline-block">This Week</EffectText>
+          <h2 class="font-display text-4xl md:text-5xl text-[--color-paper]">
+            NEW <span class="text-[--color-ember]">ARRIVALS</span>
+          </h2>
+        </div>
+        <Button variant="ghost" href="https://www.previewsworld.com/NewReleases" class="hidden md:flex">
+          View All
+        </Button>
+      </div>
+      
+      <!-- Comic covers carousel -->
+      <div class="comic-carousel overflow-x-auto pb-4 -mx-4 px-4">
+        <div class="flex gap-6 min-w-max">
+          <!-- Comic Card 1 -->
+          <div class="comic-card w-48 group cursor-pointer" data-animate>
+            <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-br from-[--color-ember] to-[--color-heat]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="font-display text-6xl text-white/20">#1</span>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                <div class="text-center">
+                  <p class="font-display text-sm text-[--color-ember]">MARVEL</p>
+                  <p class="font-comic text-white text-sm">Amazing Spider-Man</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Amazing Spider-Man</p>
+          </div>
+          
+          <!-- Comic Card 2 -->
+          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.1s;">
+            <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:-rotate-2 group-hover:shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-br from-[--color-flame] to-[--color-ember]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="font-display text-6xl text-white/20">#42</span>
+              </div>
+              <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                <div class="text-center">
+                  <p class="font-display text-sm text-[--color-flame]">DC</p>
+                  <p class="font-comic text-white text-sm">Batman</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Batman</p>
+          </div>
+          
+          <!-- Comic Card 3 -->
+          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.2s;">
+            <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-br from-[--color-heat] to-[--color-ash]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="font-display text-6xl text-white/20">#7</span>
+              </div>
+              <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                <div class="text-center">
+                  <p class="font-display text-sm text-[--color-heat]">IMAGE</p>
+                  <p class="font-comic text-white text-sm">Spawn</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Spawn</p>
+          </div>
+          
+          <!-- Comic Card 4 -->
+          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.3s;">
+            <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:-rotate-2 group-hover:shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-900"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="font-display text-6xl text-white/20">#1</span>
+              </div>
+              <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                <div class="text-center">
+                  <p class="font-display text-sm text-purple-400">INDIE</p>
+                  <p class="font-comic text-white text-sm">Saga</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Saga</p>
+          </div>
+          
+          <!-- Comic Card 5 -->
+          <div class="comic-card w-48 group cursor-pointer" data-animate style="animation-delay: 0.4s;">
+            <div class="relative aspect-[2/3] bg-[--color-ash-lighter] rounded-lg overflow-hidden border-4 border-black shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-green-900"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="font-display text-6xl text-white/20">#15</span>
+              </div>
+              <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                <div class="text-center">
+                  <p class="font-display text-sm text-green-400">MARVEL</p>
+                  <p class="font-comic text-white text-sm">Hulk</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 font-comic text-sm text-[--color-paper] text-center truncate">Hulk</p>
+          </div>
+          
+          <!-- More comics indicator -->
+          <div class="w-48 flex items-center justify-center">
+            <a href="https://www.previewsworld.com/NewReleases" class="text-center group">
+              <div class="w-20 h-20 rounded-full border-2 border-dashed border-[--color-smoke] flex items-center justify-center group-hover:border-[--color-ember] transition-colors">
+                <svg class="w-8 h-8 text-[--color-smoke] group-hover:text-[--color-ember] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+              <span class="block mt-4 font-display text-sm text-[--color-smoke] group-hover:text-[--color-ember] transition-colors">VIEW ALL</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PANEL 5: COMMUNITY / TESTIMONIALS ==================== -->
+  <section id="community" class="py-20 md:py-32 bg-[--color-ash-light] relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-6xl text-[--color-paper] mb-4">
+          JOIN THE <span class="text-[--color-ember]">FAMILY</span>
+        </h2>
+        <p class="text-[--color-smoke-light] text-lg">What our community says about us</p>
+      </div>
+      
+      <!-- Testimonials in thought bubbles -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="testimonial" data-animate>
+          <div class="thought-bubble-large p-6">
+            <p class="text-[--color-ash] font-comic text-lg mb-4">
+              "I love this store! Been coming here since they opened. Best selection on Long Island!"
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[--color-ember] flex items-center justify-center text-white font-display">B</div>
+              <div>
+                <p class="font-display text-sm text-[--color-ash]">Ben P.</p>
+                <p class="text-xs text-[--color-smoke]">Loyal Customer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial" data-animate style="animation-delay: 0.1s;">
+          <div class="thought-bubble-large p-6">
+            <p class="text-[--color-ash] font-comic text-lg mb-4">
+              "Peter knows his stuff! Always has great recommendations for indie titles."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[--color-flame] flex items-center justify-center text-[--color-ash] font-display">J</div>
+              <div>
+                <p class="font-display text-sm text-[--color-ash]">Jordan</p>
+                <p class="text-xs text-[--color-smoke]">Collector</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial" data-animate style="animation-delay: 0.2s;">
+          <div class="thought-bubble-large p-6">
+            <p class="text-[--color-ash] font-comic text-lg mb-4">
+              "Friendly atmosphere and amazing collection. This is what a comic shop should be!"
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[--color-heat] flex items-center justify-center text-white font-display">M</div>
+              <div>
+                <p class="font-display text-sm text-[--color-ash]">Mike R.</p>
+                <p class="text-xs text-[--color-smoke]">Manga Fan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Social proof -->
+      <div class="mt-16 text-center">
+        <p class="text-[--color-smoke-light] mb-6">Highly rated on</p>
+        <div class="flex items-center justify-center gap-8">
+          <a href="https://www.yelp.com/biz/phoenix-comics-and-collectibles-hicksville" target="_blank" rel="noopener" class="flex items-center gap-2 text-[--color-paper] hover:text-[--color-ember] transition-colors">
+            <span class="font-display text-lg">YELP</span>
+            <span class="text-[--color-flame]">★★★★★</span>
+          </a>
+          <a href="https://g.page/phoenixcomics" target="_blank" rel="noopener" class="flex items-center gap-2 text-[--color-paper] hover:text-[--color-ember] transition-colors">
+            <span class="font-display text-lg">GOOGLE</span>
+            <span class="text-[--color-flame]">★★★★★</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PANEL 6: FIND THE LAIR (LOCATION) ==================== -->
+  <section id="location" class="py-20 md:py-32 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Map / Store illustration -->
+        <div class="relative" data-animate>
+          <Panel variant="comic" class="aspect-video overflow-hidden">
+            <!-- Stylized map background -->
+            <div class="absolute inset-0 bg-[--color-ash-lighter]">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.5!2d-73.5251!3d40.7682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ2JzA1LjUiTiA3M8KwMzEnMzAuNCJX!5e0!3m2!1sen!2sus!4v1234567890"
+                class="w-full h-full border-0 grayscale contrast-125 opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            
+            <!-- Store pin -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full z-10 pointer-events-none">
+              <div class="animate-float">
+                <Phoenix size="sm" />
+              </div>
+            </div>
+          </Panel>
+        </div>
+        
+        <!-- Location info -->
+        <div data-animate style="animation-delay: 0.2s;">
+          <EffectText variant="pow" rotation={5} class="mb-6 inline-block">Find Us</EffectText>
+          <h2 class="font-display text-4xl md:text-5xl text-[--color-paper] mb-8">
+            VISIT THE <span class="text-[--color-ember]">LAIR</span>
+          </h2>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-[--color-ember]/20 flex items-center justify-center text-[--color-ember] flex-shrink-0">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display text-lg text-[--color-paper]">ADDRESS</h3>
+                <p class="text-[--color-smoke-light]">107-5 Stewart Avenue<br>Hicksville, NY 11801</p>
+                <a href="https://goo.gl/maps/MnUUDu2b24Q2" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-[--color-ember] hover:text-[--color-flame] transition-colors mt-2 text-sm">
+                  Get Directions
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-[--color-flame]/20 flex items-center justify-center text-[--color-flame] flex-shrink-0">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display text-lg text-[--color-paper]">PHONE</h3>
+                <a href="tel:+15169399129" class="text-[--color-smoke-light] hover:text-[--color-ember] transition-colors">
+                  (516) 939-9129
+                </a>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-[--color-heat]/20 flex items-center justify-center text-[--color-heat] flex-shrink-0">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display text-lg text-[--color-paper]">HOURS</h3>
+                <ul class="text-[--color-smoke-light] text-sm space-y-1">
+                  <li>Mon: <span class="text-[--color-heat]">Closed</span></li>
+                  <li>Tue: 1 PM – 6 PM</li>
+                  <li>Wed: 12:30 PM – 7 PM</li>
+                  <li>Thu: <span class="text-[--color-heat]">Closed</span></li>
+                  <li>Fri: 12:30 PM – 7 PM</li>
+                  <li>Sat: 12:30 PM – 6 PM</li>
+                  <li>Sun: 12:30 PM – 5 PM</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-8">
+            <Button variant="flame" href="/visit">
+              Plan Your Visit
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PANEL 7: CTA ==================== -->
+  <section id="cta" class="py-20 md:py-32 bg-gradient-to-b from-[--color-ash] to-[--color-ash-light] relative overflow-hidden">
+    <!-- Background Phoenix watermark -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-5">
+      <Phoenix size="xl" animated={false} class="w-[600px] h-[600px]" />
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h2 class="font-display text-4xl md:text-6xl text-[--color-paper] mb-6">
+        READY TO <span class="text-fire">EXPLORE?</span>
+      </h2>
+      <p class="text-[--color-smoke-light] text-xl mb-10 max-w-2xl mx-auto">
+        Whether you're hunting for a key issue, starting a new series, or just browsing — 
+        there's always something waiting for you at Phoenix Comics.
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button variant="flame" size="lg" href="/visit">
+          Visit Today
+        </Button>
+        <Button variant="ember" size="lg" href="https://www.previewsworld.com/pullbox" target="_blank">
+          Start Your Pull List
+        </Button>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* Hero panel styles */
+  .hero-panel {
+    background: linear-gradient(180deg, var(--color-ash) 0%, #0a0a0a 100%);
+  }
+  
+  .hero-phoenix {
+    animation: hero-entrance 1s var(--ease-panel) forwards;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  
+  @keyframes hero-entrance {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Background flames */
+  .flame-bg {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: flame-float 8s ease-in-out infinite;
+  }
+  
+  .flame-1 {
+    background: var(--color-ember);
+    left: 10%;
+    top: 20%;
+    animation-delay: 0s;
+  }
+  
+  .flame-2 {
+    background: var(--color-flame);
+    right: 15%;
+    top: 30%;
+    animation-delay: -2s;
+  }
+  
+  .flame-3 {
+    background: var(--color-heat);
+    left: 50%;
+    bottom: 20%;
+    animation-delay: -4s;
+  }
+  
+  @keyframes flame-float {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-30px) scale(1.1);
+    }
+  }
+  
+  /* Thought bubble large */
+  .thought-bubble-large {
+    background: var(--color-paper);
+    border-radius: 2rem;
+    border: 4px solid #000;
+    position: relative;
+  }
+  
+  .thought-bubble-large::before,
+  .thought-bubble-large::after {
+    content: '';
+    position: absolute;
+    background: var(--color-paper);
+    border: 3px solid #000;
+    border-radius: 50%;
+  }
+  
+  .thought-bubble-large::before {
+    width: 24px;
+    height: 24px;
+    bottom: -18px;
+    left: 40px;
+  }
+  
+  .thought-bubble-large::after {
+    width: 14px;
+    height: 14px;
+    bottom: -35px;
+    left: 28px;
+  }
+  
+  /* Comic carousel */
+  .comic-carousel {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ember) var(--color-ash-light);
+  }
+  
+  .comic-carousel::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .comic-carousel::-webkit-scrollbar-track {
+    background: var(--color-ash-light);
+    border-radius: 4px;
+  }
+  
+  .comic-carousel::-webkit-scrollbar-thumb {
+    background: var(--color-ember);
+    border-radius: 4px;
+  }
+  
+  /* Service cards stagger animation */
+  .service-card {
+    opacity: 0;
+    transform: translateY(30px) rotate(-2deg);
+    animation: card-entrance 0.6s var(--ease-panel) forwards;
+  }
+  
+  .service-card:nth-child(2) { animation-delay: 0.1s; }
+  .service-card:nth-child(3) { animation-delay: 0.2s; }
+  .service-card:nth-child(4) { animation-delay: 0.3s; }
+  
+  @keyframes card-entrance {
+    to {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+    }
+  }
+  
+  /* Animate elements on scroll */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-panel), transform 0.6s var(--ease-panel);
+  }
+  
+  [data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Fire text gradient */
+  .text-fire {
+    background: linear-gradient(180deg, var(--color-flame) 0%, var(--color-ember) 50%, var(--color-heat) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .flame-bg,
+    .hero-phoenix,
+    .service-card,
+    [data-animate] {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  const animatedElements = document.querySelectorAll('[data-animate]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  animatedElements.forEach(el => observer.observe(el));
+</script>
