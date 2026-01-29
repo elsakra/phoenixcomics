@@ -137,8 +137,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       </div>
     </div>
     
-    <!-- Navigation -->
-    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-[--z-nav] transition-all duration-300 bg-[--color-ash]/80 backdrop-blur-sm">
+    <!-- Navigation - isolate creates new stacking context, pointer-events-auto ensures clicks work -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-[--z-nav] transition-all duration-300 bg-[--color-ash] isolate pointer-events-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
           <!-- Logo -->
@@ -334,12 +334,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           scrollProgress.style.transform = `scaleX(${scrollPercent})`;
         }
         
-        // Nav background on scroll
+        // Nav shadow on scroll
         if (nav) {
           if (scrollTop > 50) {
-            nav.classList.add('bg-[--color-ash]/90', 'backdrop-blur-lg', 'shadow-lg');
+            nav.classList.add('shadow-lg', 'shadow-[--color-ember]/20');
           } else {
-            nav.classList.remove('bg-[--color-ash]/90', 'backdrop-blur-lg', 'shadow-lg');
+            nav.classList.remove('shadow-lg', 'shadow-[--color-ember]/20');
           }
         }
         
